@@ -24,6 +24,7 @@ class Admin extends CI_Controller {
                 $this->load->model('group_model');	
                 $this->load->model('sub_group_model');	
              // $this->load->model('superadmin_model');	
+             // $this->load->model('superadmin_model');	
     }
 
     /**default functin, redirects to login page if no admin logged in yet***/

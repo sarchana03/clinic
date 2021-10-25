@@ -579,7 +579,7 @@
                 }
                 
                 .text-muted {
-                    color: #8d9ea7!important
+                    color: #000!important
                 }
                 
                 .text-warning {
@@ -1238,8 +1238,10 @@
                 
                 .app-search {
                     position: relative;
-                    margin-left: 840px;
+                    margin-left: 40px;
                 }
+
+              
                 
                 .app-search a {
     position: relative;
@@ -1864,6 +1866,32 @@
                     text-transform: uppercase;
                     font-size: 14px
                 }
+
+                .dashboard-box{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    grid-gap:2rem;
+                    grid-auto-rows: minmax(200px, auto);
+
+
+                }
+                .dashboard-box .dashboard-box-in{
+                    background: #fff;
+                    /* background: rgba(255, 255, 255, .1); */
+                    padding: 30px 30px;
+                    margin: 15px 30px 50px 30px ;
+                    border: 0px solid #e4e6e8;
+                    border-radius: 30px;
+                    -webkit-box-shadow: 0 15px 30px 0 rgb(0 0 0 / 11%), 0 5px 15px 0 rgb(0 0 0 / 8%);
+                    box-shadow: 0 15px 30px 0 rgb(0 0 0 / 11%), 0 5px 15px 0 rgb(0 0 0 / 8%);
+                }
+
+
+
+
+
+
+
                 
                 .panel {
                     border-radius: 0;
@@ -4682,6 +4710,15 @@
                     display: flex;
                     align-items: center;
                 }
+                
+                .newuser-register {
+                    background: url(../../optimum/plugins/images/newuser-img.jpg) top center/cover no-repeat!important;
+                    height: 100%;
+                    position: fixed;
+                    display: flex;
+                    align-items: center;
+                }
+
 
                 .login-wrapper {
                     width: 60%;
@@ -4690,6 +4727,18 @@
                     
                     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
                     border-radius: 10px;
+                }
+
+
+                .newuser-block{
+                    width: 40%;
+                    margin: 0 auto; 
+                }
+                .newuser-block .newuser-block-in{
+                    background: #fff;
+                    padding: 2rem ;
+                    border-radius: 2rem;
+
                 }
 
                 .box-width{
@@ -6155,6 +6204,7 @@
                 .r-icon-stats .bodystate h4 {
                     margin-bottom: 0;
                     color: #F35B61 ;
+                    font-weight: bold;
                 }
 
 
@@ -6181,6 +6231,7 @@
                 .r-icon-statsb .bodystate h4 {
                     margin-bottom: 0;
                     color: #74a9f0;
+                    font-weight: bold;
                 }
 
 
@@ -6206,6 +6257,7 @@
                 .r-icon-statsw .bodystate h4 {
                     margin-bottom: 0;
                     color: #F35B61;
+                    font-weight: bold;
                 }
 
 

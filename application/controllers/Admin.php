@@ -23,6 +23,7 @@ class Admin extends CI_Controller {
                 $this->load->model('patient_model');	
                 $this->load->model('group_model');	
                 $this->load->model('sub_group_model');	
+                $this->load->model('newuser_model');	
              // $this->load->model('superadmin_model');	
              
     }
@@ -1199,6 +1200,34 @@ function sub_group ($param1 = null, $param2 = null, $param3 = null){
         $clinic_id = $this->session->userdata('clinic_id');
         $page_data['page_title']    = get_phrase('Manage patient');
         $this->load->view('backend/index', $page_data);
+
+    }
+
+    function newuser ($param1 = null, $param2 = null, $param3 = null){
+
+        if($param1 == 'create'){
+            $this->newuser_model->createNewuser();
+            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+            redirect(base_url(). 'login', 'refresh');
+        }
+
+        if($param1 == 'update'){
+            $this->newuser_model->updateNewuser($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'login', 'refresh');
+        }
+
+        if($param1 == 'delete'){
+            $this->newuser_model->deleteNewuser($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            redirect(base_url(). 'login', 'refresh');
+
+        }
+
+        $page_data['page_name']     = 'newuser';
+        $clinic_id = $this->session->userdata('clinic_id');
+        // $page_data['page_title']    = get_phrase('Manage user');
+        $this->load->view('backend/login');
 
     }
 

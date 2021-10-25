@@ -13,6 +13,7 @@ class Department extends CI_Controller {
         function department ($param1 = null, $param2 = null, $param3 = null){
 
         if($param1 == 'insert'){
+            
             $this->department_model->insertDepartmentFunction();
             $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
             redirect(base_url(). 'department/department', 'refresh');

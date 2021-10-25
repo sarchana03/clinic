@@ -616,7 +616,7 @@
                 
                 .text-dark {
                     color: #686868!important;
-                    padding: 10px 1px 10px 100px;
+                    padding: 10px 1px 10px 70px;
                     font-size: 17px;
                 }
                 
@@ -4539,7 +4539,7 @@
                 }
                 
                 .select2-container-multi .select2-choices {
-                    border: 1px solid #border!important;
+                    /* border: 1px solid #border!important; */
                     box-shadow: none!important;
                     background-image: none!important;
                     border-radius: 0!important;
@@ -4691,6 +4691,65 @@
                     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
                     border-radius: 10px;
                 }
+
+                .box-width{
+                    width: 50%;
+                    margin: 0 auto;
+                }
+
+                .box-width .box-wrapper{
+                   display: grid;
+                   grid-template-columns: 2fr 1.5fr;
+                   /* grid-gap:1rem; */
+                   grid-auto-rows: minmax(400px, auto);
+                   /* background: #f0f; */
+                   margin: 1rem;
+
+                }
+
+                .box-width .box-wrapper .box-in-img{
+                    background: url(../../optimum/plugins/images/login-img.jpg) top center/cover no-repeat!important;
+                    /* height: 100%; */
+                    /* position: fixed; */
+                    /* display: flex; */
+                    /* align-items: center; */
+                    /* background-color: rgb(0,0,0); 
+                    background-color: rgba(0,0,0, 0.7); */
+                    /* background: rgba(255, 255, 255, .5); */
+                    /* filter: blur(1px); */
+                    /* border-radius: 0px 10px 10px 0px; */
+                    /* padding: 42px 0px; */
+
+                }
+                .box-width .box-wrapper .box-in{
+                    background: #fff;
+                    /* margin: 2rem; */
+                    padding: 2rem;
+                    /* border-radius: 10px; */
+                }
+
+                .box-width .box-wrapper .box-in h2{
+                    /* background: rgb(36, 223, 61); */
+                    font-size: 3rem;
+                    font-weight: 600;
+                    text-align: center;
+                }
+
+                .box-width .box-wrapper .user{
+                    margin-top: 8rem;
+                    align-items: center;
+                }
+
+                .box-width .box-wrapper .user h3{
+                    font-size: 2rem;
+                    text-align: center;
+                    font-weight: 400;
+                }
+
+
+
+
+
 
                 .text-center{
                     text-align: center;

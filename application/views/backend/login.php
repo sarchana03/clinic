@@ -138,7 +138,7 @@ $system_title = $this->db->get_where('settings', array('type' => 'system_title')
                                 style="width:40%; color:white" >Register
                                 <!-- <?php echo get_phrase('Register');?> -->
                             </button>
-                            <a href="<?php echo base_url() ?>newuser.php">dsdsd</a>
+                            <!-- <a href="<?php echo base_url() ?>newuser.php">dsdsd</a> -->
                         </div>
 
                     </div>

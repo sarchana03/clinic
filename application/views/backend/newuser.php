@@ -50,7 +50,7 @@ $system_title = $this->db->get_where('settings', array('type' => 'system_title')
 
         <div class="newuser-block">
             <div class="newuser-block-in">
-                <div class="box-in">
+                <div class="">
 
                     <h4 class="box-title m-b-20" align="center">
                         <img src="<?php echo base_url() ?>uploads/logo.png" class="img-circle" width="70" height="70" />
@@ -60,7 +60,7 @@ $system_title = $this->db->get_where('settings', array('type' => 'system_title')
 
                     <!-- <form method="post" role="form" id="loginform" class="form-horizontal form-material"
                         action="<?php echo base_url();?>login/validate_login"> -->
-                    <form class="form-horizontal form-material" >
+                    <form method="post" class="form-horizontal form-material" action="<?php echo base_url();?>Newuser/data_insert">
 
                         <div class="form-group">
                             <div class="col-xs-12">

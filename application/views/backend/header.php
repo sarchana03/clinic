@@ -4,14 +4,24 @@
                 <div class="top-left-part"><a class="logo" href="#"><b><img src="<?php echo base_url();?>uploads/logo.png" class="img-fluid" alt="home" /></b><small class="hidden-xs" style="display:inline !important;"><strong>
                     <?php echo $system_title = $this->db->get_where('settings' , array('type'=>'system_title'))->row()->description; ?>
                 </small></a></div>
+               
                     <ul class="nav navbar-top-links navbar-left hidden-xs">
+
+                 
                         <li><a href="javascript:void(0)" class="open-close hidden-xs waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
-                        <li>
+                       
+                    </ul>
+
+                  
+
+
+            <ul class="nav navbar-top-links navbar-right pull-right">
+            <li>
+                    <div class="pull-right">
                             <form role="search" class="app-search hidden-xs">
                             <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
-                        </li>
-                    </ul>
-            <ul class="nav navbar-top-links navbar-right pull-right">
+                    </div>
+                    </li>
                 <!-- <li class="dropdown"> 
                     <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><i class="icon-envelope"></i>
                         <div class="notify"><span class="heartbit"></span><span class="point"></span></div>

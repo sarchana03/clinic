@@ -1,7 +1,7 @@
  <!--row -->
- <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="white-box-in blue-bg">
+ <div class="dashboard-box">
+                    <div class="dashboard-box-in">
+                      
                             <div class="r-icon-stats">
                                 <i class="ti-user bg-megna"></i>
                                 <div class="bodystate">
@@ -9,10 +9,10 @@
                                 </div>
                             </div>
                                     <span class="text-muted"><?php echo get_phrase('Patients');?></span>
-                        </div>
+                       
                     </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="white-box-in green-bg">
+                    <div class="dashboard-box-in">
+                     
                             <div class="r-icon-statsb">
                                 <i class="ti-user bg-megna"></i>
                                 <div class="bodystate">
@@ -20,10 +20,10 @@
                                 </div>
                             </div>
                                     <span class="text-muted"><?php echo get_phrase('Doctors');?></span>
-                        </div>
+                       
                     </div>
-                    <div class="col-md-3 col-sm-6">
-                       <div class="white-box-in dark-blue-bg">
+                    <div class="dashboard-box-in">
+                  
                             <div class="r-icon-statsw">
                                  <i class="ti-user bg-megna"></i>
                                 <div class="bodystate">
@@ -31,10 +31,10 @@
                                 </div>
                             </div>
                                     <span class="text-muted"><?php echo get_phrase('parents');?></span>
-                        </div>
+                      
                     </div>
-                    <div class="col-md-3 col-sm-6">
-                          <div class="white-box-in pink-bg">
+                    <div class="dashboard-box-in">
+                        
                             <div class="r-icon-statsy">
                                 <i class="ti-user bg-megna"></i>
                                 <div class="bodystate">
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                                     <span class="text-muted"><?php echo get_phrase('Attendance');?></span>
-                        </div>
+                      
                     </div>
 
                

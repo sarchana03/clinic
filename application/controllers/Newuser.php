@@ -21,6 +21,21 @@ class Newuser extends CI_Controller {
         $this->load->view('backend/newuser','refresh');
     }
 
+    function data_insert()
+    {
+            $name=$this->input->post('name');
+            $gender=$this->input->post('gender');
+            $blood_group=$this->input->post('blood_group');
+            $phone=$this->input->post('phone');
+            $email=$this->input->post('email');
+            $password=$this->input->post('password');
+            $address=$this->input->post('address');
+
+            $capsule = array('name' => $name , 'gender' => $gender , 'blood_group' => $blood_group , 'phone' => $phone , 'email' => $email , 'password' => $password , 'address' => $address );
+
+            $this->Newuser_model->save($capsule);
+    }
+
 
   
 

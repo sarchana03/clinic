@@ -50,7 +50,7 @@
 							<td>
 							
 							<?php if($row['status'] == 'live') :?>
-							<a href="<?php echo base_url();?>patient/stream_jitsi/<?php echo $row['jitsi_id'];?>"><button type="button" class="btn btn-success btn-rounded btn-sm"><i class="fa fa-youtube-play"></i> Join Class</button></a>
+							<a href="<?php echo base_url();?>patient/stream_jitsi/<?php echo $row['jitsi_id'];?>"><button type="button" class="btn btn-success btn-rounded btn-sm"><i class="fa fa-youtube-play"></i> Join meeting</button></a>
 							<?php endif;?>
 							
 							

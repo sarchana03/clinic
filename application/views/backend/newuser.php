@@ -101,12 +101,12 @@ $system_title = $this->db->get_where('settings', array('type' => 'system_title')
                                     placeholder="<?php echo get_phrase('email');?>" style="width:100%">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <div class="col-xs-12">
                                 <input class="form-control" type="password" name="password" required=""
                                     placeholder="<?php echo get_phrase('password');?>" style="width:100%">
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <div class="col-xs-12">

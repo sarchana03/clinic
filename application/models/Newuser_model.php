@@ -9,8 +9,12 @@ class Newuser_model extends CI_Model {
     }
 
 
-    function save(){
-        
+    function save($capsule)
+    {
+        $insert = $this->db->insert('newuser', $capsule);
+        if($insert){
+            return $msg = "Data inserted successfully ";
+        }
     }
 
 

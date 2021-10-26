@@ -69,8 +69,10 @@ class Live_class_model extends CI_Model {
         $arrayLive = array(
 
             'title'             => html_escape($this->input->post('title')),
-            'class_id'          => html_escape($this->input->post('class_id')),
-            'section_id'        => html_escape($this->input->post('section_id')),
+            // 'class_id'          => html_escape($this->input->post('class_id')),
+            // 'section_id'        => html_escape($this->input->post('section_id')),
+            'patient_id'        => html_escape($this->input->post('patient_id')),
+
             'meeting_date'      => strtotime($this->input->post('meeting_date')),
             'description'       => html_escape($this->input->post('description')),
             'start_time'        => html_escape($this->input->post('start_time')),

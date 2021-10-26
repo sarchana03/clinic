@@ -87,7 +87,20 @@
   //$this->load->view('backend/index', 'refresh');
  }
 
+ if ($accountType == 'doctor') {
+    //echo '<script>alert("This doctor Acc")</script>';
+    //$this->load->view('backend/index', 'refresh');
+}
+
+ if ($accountType == 'patient') {
+  //echo '<script>alert("This patient Acc")</script>';
+  //$this->load->view('backend/index', 'refresh');
+ }
+
+
 ?>
+
+
 
 	<script>
 		var domain = "8x8.vc";

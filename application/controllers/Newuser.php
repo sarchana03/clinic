@@ -8,7 +8,7 @@ class Newuser extends CI_Controller {
         		$this->load->database();                                //Load Databse Class
                 $this->load->library('session');					    //Load library for session
                 // $this->load->model('student_payment_model');
-                // $this->load->model('newuser_model');
+                $this->load->model('newuser_model');
                
     }
 
@@ -33,7 +33,9 @@ class Newuser extends CI_Controller {
 
             $capsule = array('name' => $name , 'gender' => $gender , 'blood_group' => $blood_group , 'phone' => $phone , 'email' => $email , 'password' => $password , 'address' => $address );
 
-            $this->Newuser_model->save($capsule);
+           $msg = $this->newuser_model->save($capsule);
+
+           echo $msg;
     }
 
 

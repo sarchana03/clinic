@@ -37,10 +37,10 @@ class Live_class_model extends CI_Model {
 
         if($sendPhone == '1'){
 
-            $students = $this->db->get_where('student', array('class_id' => $this->input->post('class_id')))->row();
-            $student_parent_id = $students->parent_id;
-            $parents = $this->db->get_where('parent', array('parent_id' => $student_parent_id))->result_array();
-            $student_array = $this->db->get_where('student', array('class_id' => $students->class_id))->result_array();
+            $patients = $this->db->get_where('patient', array('group_id' => $this->input->post('group_id')))->row();
+            $patient_parent_id = $patients->parent_id;
+            $parents = $this->db->get_where('parent', array('parent_id' => $patient_parent_id))->result_array();
+            $patient_array = $this->db->get_where('patient', array('group_id' => $patients->group_id))->result_array();
 
             $message = $this->input->post('title').' ';
             $message .= get_phrase('on').' '. $senddate;
@@ -50,8 +50,8 @@ class Live_class_model extends CI_Model {
                 $this->sms_model->send_sms($message, $recieverPhoneNumber);
             }
 
-            foreach ($student_array as $key => $student){
-                $recieverPhoneNumber = $student['phone'];
+            foreach ($patient_array as $key => $patient){
+                $recieverPhoneNumber = $patient['phone'];
                 $this->sms_model->send_sms($message, $recieverPhoneNumber);
             }
 
@@ -90,10 +90,10 @@ class Live_class_model extends CI_Model {
 
         if($sendPhone == '1'){
 
-            $students = $this->db->get_where('student', array('class_id' => $this->input->post('class_id')))->row();
-            $student_parent_id = $students->parent_id;
-            $parents = $this->db->get_where('parent', array('parent_id' => $student_parent_id))->result_array();
-            $student_array = $this->db->get_where('student', array('class_id' => $students->class_id))->result_array();
+            $patients = $this->db->get_where('patient', array('group_id' => $this->input->post('group_id')))->row();
+            $patient_parent_id = $patients->parent_id;
+            $parents = $this->db->get_where('parent', array('parent_id' => $patient_parent_id))->result_array();
+            $patient_array = $this->db->get_where('patient', array('group_id' => $patients->group_id))->result_array();
 
             $message = $this->input->post('title').' ';
             $message .= get_phrase('on').' '. $senddate;
@@ -103,8 +103,8 @@ class Live_class_model extends CI_Model {
                 $this->sms_model->send_sms($message, $recieverPhoneNumber);
             }
 
-            foreach ($student_array as $key => $student){
-                $recieverPhoneNumber = $student['phone'];
+            foreach ($patient_array as $key => $patient){
+                $recieverPhoneNumber = $patient['phone'];
                 $this->sms_model->send_sms($message, $recieverPhoneNumber);
             }
 
@@ -129,9 +129,10 @@ class Live_class_model extends CI_Model {
     }
 
     function selectJitsipatientbypatientId(){
-        $studentClasspatient = $this->db->get_where('patient', array('patient_id' => $this->session->userdata('patient_id')))->row()->patient_id;
+        $patientgroup = $this->db->get_where('patient', array('patient_id' => $this->session->userdata('patient_id')))->row()->group_id;
+        $patientsubgroup = $this->db->get_where('patient', array('patient_id' => $this->session->userdata('patient_id')))->row()->subgroup_id;
 
-        $sql = "select * from jitsi where patient_id='".$studentClasspatient."' order by jitsi_id asc";
+        $sql = "select * from jitsi where group_id='".$patientgroup."' and subgroup_id='".$patientsubgroup."' order by jitsi_id asc";
         return $this->db->query($sql)->result_array();
     } 
 

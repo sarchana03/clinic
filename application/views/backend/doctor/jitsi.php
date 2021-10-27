@@ -3,7 +3,7 @@
 				        <div class="panel panel-info">
 				            <div class="panel-heading">&nbsp;
 				                <div class="pull-right"><a href="#" data-perform="panel-collapse"><i
-				                            class="fa fa-plus"></i>&nbsp;&nbsp;CREATE NEW LIVE MEETING</a> <a href="#"
+				                            class="fa fa-plus"></i>&nbsp;&nbsp;CREATE NEW LIVE CONSULTANCY</a> <a href="#"
 				                        data-perform="panel-dismiss"></a> </div>
 				            </div>
 				            <div class="panel-wrapper collapse out" aria-expanded="true">
@@ -29,7 +29,7 @@
 				                                    for="example-text"><?php echo get_phrase('patient');?></label>
 				                                <div class="col-sm-12">
 				                                    <select name="patient_id" class="form-control select2" style="width:100%"
-				                                        id="patient_id" onchange="return get_class_sections(this.value)">
+				                                        id="patient_id" onchange="return get_group_sub_groups(this.value)">
 				                                        <option value=""><?php echo get_phrase('select');?></option>
 				                                        <?php 
 								$patients = $this->crud_model->get_patients(); foreach($patients as $row): ?>
@@ -255,11 +255,42 @@ $('form').submit(function(e) {
 				</script>
 
 
-				<script type="text/javascript">
+				<!-- <script type="text/javascript">
 function get_class_sections(class_id) {
 
     $.ajax({
         url: '<?php echo base_url();?>admin/get_class_section/' + class_id,
+        success: function(response) {
+            jQuery('#section_selector_holder').html(response);
+        }
+    });
+
+}
+
+
+$('#check').click(function() {
+
+    if ($('#check').is(':checked') == true) {
+        $("#send_sms").show(500);
+        $("#initial").hide(500);
+    } else {
+
+        $("#send_sms").hide(500);
+        $("#initial").show(500);
+    }
+
+});
+
+$("#send_sms").hide();
+				</script> -->
+
+
+
+<script type="text/javascript">
+function get_group_sub_groups(group_id) {
+
+    $.ajax({
+        url: '<?php echo base_url();?>admin/get_group_sub_group/' + group_id,
         success: function(response) {
             jQuery('#section_selector_holder').html(response);
         }

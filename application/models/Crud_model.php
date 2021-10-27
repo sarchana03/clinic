@@ -46,6 +46,8 @@ class Crud_model extends CI_Model {
     }
 
 
+
+
     function get_teachers() {
         $query = $this->db->get('teacher');
         return $query->result_array();
@@ -56,6 +58,22 @@ class Crud_model extends CI_Model {
         foreach ($res as $row)
             return $row['name'];
     }
+
+    function get_doctors() {
+        $query = $this->db->get('doctor');
+        return $query->result_array();
+    }
+    function get_doctor_name($doctor_id) {
+        $query = $this->db->get_where('doctor', array('doctor_id' => $doctor_id));
+        $res = $query->result_array();
+        foreach ($res as $row)
+            return $row['name'];
+    }
+
+
+
+
+
 
 
 

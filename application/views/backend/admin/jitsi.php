@@ -3,7 +3,7 @@
                     <div class="col-sm-12">
                         <div class="panel panel-info">
                             <div class="panel-heading">&nbsp;
-                                <div class="pull-right"><a href="#" data-perform="panel-collapse"><i class="fa fa-plus"></i>&nbsp;&nbsp;CREATE NEW LIVE CLASS</a> <a href="#" data-perform="panel-dismiss"></a> </div>
+                                <div class="pull-right"><a href="#" data-perform="panel-collapse"><i class="fa fa-plus"></i>&nbsp;&nbsp;CREATE NEW LIVE CONSULTANCY</a> <a href="#" data-perform="panel-dismiss"></a> </div>
                             </div>
                             <div class="panel-wrapper collapse out" aria-expanded="true">
                                 <div class="panel-body">
@@ -25,7 +25,7 @@
 					<div class="form-group">
                  		<label class="col-md-12" for="example-text"><?php echo get_phrase('patient');?></label>
                     	<div class="col-sm-12">
-							<select name="patient_id" class="form-control select2" style="width:100%"id="patient_id" onchange="return get_class_sections(this.value)">
+							<select name="patient_id" class="form-control select2" style="width:100%"id="patient_id" onchange="return get_group_sub_groups(this.value)">
                               <option value=""><?php echo get_phrase('select');?></option>
                               <?php 
 								$classes = $this->crud_model->get_patients(); foreach($classes as $row): ?>
@@ -122,7 +122,7 @@
                 			<input type="checkbox" id="check" value="1" name="send_notification_sms"> <i></i> <?=get_phrase('send_notification_sms')?>
 						</div>
                         <p style="color:red" id="initial">Meeting will not be sent to mobile number(s)!</p>
-                        <p style="color:green" id="send_sms">Meetting info will be sent to parent and students' phone number(s). Note that only parent(s) and student(s) in the class selected will receive message</p>
+                        <p style="color:green" id="send_sms">Meetting info will be sent to parent and patients' phone number(s). Note that only parent(s) and patient(s) in the class selected will receive message</p>
             	</div>
 				
 				
@@ -147,7 +147,7 @@
 				  	<div class="panel panel-info">
                           
                                 <div class="panel-body table-responsive">
-								  <?php echo get_phrase('list_live_class');?>
+								  <?php echo get_phrase('list_live_online_consultancy');?>
 								  <hr class="sep-2">
 			
                                 <table id="example23" class="display nowrap" cellspacing="0" width="100%">
@@ -226,13 +226,47 @@
 	
 </script>
 
-
+<!-- 
 <script type="text/javascript">
 
 	function get_class_sections(class_id) {
 
     	$.ajax({
             url: '<?php echo base_url();?>admin/get_class_section/' + class_id ,
+            success: function(response)
+            {
+                jQuery('#section_selector_holder').html(response);
+            }
+        });
+
+    }
+
+
+    $('#check').click(function(){
+
+        if($('#check').is(':checked') == true){
+            $("#send_sms").show(500);
+            $("#initial").hide(500);
+        }else{
+
+            $("#send_sms").hide(500);
+            $("#initial").show(500);
+        }
+
+    });
+
+    $("#send_sms").hide();
+
+
+</script> -->
+
+
+<script type="text/javascript">
+
+	function get_group_sub_groups(group_id) {
+
+    	$.ajax({
+            url: '<?php echo base_url();?>admin/get_group_sub_group/' + group_id ,
             success: function(response)
             {
                 jQuery('#section_selector_holder').html(response);

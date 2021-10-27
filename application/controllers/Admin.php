@@ -1113,6 +1113,14 @@ function sub_group ($param1 = null, $param2 = null, $param3 = null){
             }
     }
 
+    // function get_patient_patientid($patient_id){
+    //     $sections = $this->db->get_where('section', array('class_id' => $class_id))->result_array();
+    //         foreach($sections as $key => $section)
+    //         {
+    //             echo '<option value="'.$section['section_id'].'">'.$section['name'].'</option>';
+    //         }
+    // }
+
 
     function get_group_sub_group($group_id){
         $sub_groups = $this->db->get_where('sub_group', array('group_id' => $group_id))->result_array();

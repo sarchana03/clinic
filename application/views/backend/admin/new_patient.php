@@ -503,7 +503,7 @@
 
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 	function get_class_sections(class_id) {
 
@@ -517,7 +517,7 @@
 
     }
 
-</script>
+</script> -->
 
 
 
@@ -529,7 +529,7 @@
             url: '<?php echo base_url();?>admin/get_group_sub_group/' + group_id ,
             success: function(response)
             {
-                jQuery('#sub_group_selector_holder').html(response);
+                jQuery('#section_selector_holder').html(response);
             }
         });
 

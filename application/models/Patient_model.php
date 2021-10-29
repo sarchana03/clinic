@@ -127,8 +127,8 @@ class Patient_model extends CI_Model {
     function updateNewpatient($param2){
         $page_data = array(
             'name'          => html_escape($this->input->post('name')),
-            'group_id'          => html_escape($this->input->post('group_id')),
-            'sub_group_id'          => html_escape($this->input->post('sub_group_id')),
+            'group_id'      => html_escape($this->input->post('group_id')),
+            'sub_group_id'  => html_escape($this->input->post('sub_group_id')),
             'birthday'      => html_escape($this->input->post('birthday')),
             'age'           => html_escape($this->input->post('age')),
             'place_birth'   => html_escape($this->input->post('place_birth')),

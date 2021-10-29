@@ -72,7 +72,6 @@ class Live_class_model extends CI_Model {
             // 'class_id'          => html_escape($this->input->post('class_id')),
             // 'section_id'        => html_escape($this->input->post('section_id')),
             'patient_id'        => html_escape($this->input->post('patient_id')),
-
             'meeting_date'      => strtotime($this->input->post('meeting_date')),
             'description'       => html_escape($this->input->post('description')),
             'start_time'        => html_escape($this->input->post('start_time')),
@@ -129,21 +128,21 @@ class Live_class_model extends CI_Model {
     }
 
     function selectJitsipatientbypatientId(){
-        $patientgroup = $this->db->get_where('patient', array('patient_id' => $this->session->userdata('patient_id')))->row()->group_id;
-        $patientsubgroup = $this->db->get_where('patient', array('patient_id' => $this->session->userdata('patient_id')))->row()->subgroup_id;
+        $studentClasspatient = $this->db->get_where('patient', array('patient_id' => $this->session->userdata('patient_id')))->row()->patient_id;
+        // $patientsubgroup = $this->db->get_where('patient', array('patient_id' => $this->session->userdata('patient_id')))->row()->subgroup_id;
 
-        $sql = "select * from jitsi where group_id='".$patientgroup."' and subgroup_id='".$patientsubgroup."' order by jitsi_id asc";
+        $sql = "select * from jitsi where patient_id='".$studentClasspatient."'  order by jitsi_id asc";
         return $this->db->query($sql)->result_array();
     } 
 
 
-    function selectJitsiStudentByClassSection(){
-        $studentClass = $this->db->get_where('student', array('student_id' => $this->session->userdata('student_id')))->row()->class_id;
-        $studentSection = $this->db->get_where('student', array('student_id' => $this->session->userdata('student_id')))->row()->section_id;
+    // function selectJitsiStudentByClassSection(){
+    //     $studentClass = $this->db->get_where('student', array('student_id' => $this->session->userdata('student_id')))->row()->class_id;
+    //     $studentSection = $this->db->get_where('student', array('student_id' => $this->session->userdata('student_id')))->row()->section_id;
 
-        $sql = "select * from jitsi where class_id='".$studentClass."' and section_id='".$studentSection."' order by jitsi_id asc";
-        return $this->db->query($sql)->result_array();
-    } 
+    //     $sql = "select * from jitsi where class_id='".$studentClass."' and section_id='".$studentSection."' order by jitsi_id asc";
+    //     return $this->db->query($sql)->result_array();
+    // } 
 
     function toSelectFromJitsiWithId($jitsi_id){
         $sql = "select * from jitsi where jitsi_id ='".$jitsi_id."'";

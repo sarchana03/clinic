@@ -9,7 +9,7 @@
             <div class="panel-body">
 								
 			<?php foreach($toSelectFromJitsiWithId as $value) : ?>			
-			<?php echo form_open(base_url() . 'teacher/jitsi/edit/'.$value['jitsi_id'] , array('class' => 'form-horizontal form-groups-bordered validate', 'enctype' => 'multipart/form-data'));?>
+			<?php echo form_open(base_url() . 'doctor/jitsi/edit/'.$value['jitsi_id'] , array('class' => 'form-horizontal form-groups-bordered validate', 'enctype' => 'multipart/form-data'));?>
 					<div class="row">
                     <div class="col-sm-6">
 	
@@ -21,8 +21,28 @@
 						</div>
 					</div>
 
+                    <div class="form-group">
+				                                <label class="col-md-12"
+				                                    for="example-text"><?php echo get_phrase('patient');?></label>
+				                                <div class="col-sm-12">
+				                                    <select name="patient_id" class="form-control select2" style="width:100%"
+				                                        id="patient_id"
+														 onchange="return get_group_sub_groups(this.value)"
+														 >
+				                                        <option value=""><?php echo get_phrase('select');?></option>
+				                                        <?php 
+								$patients = $this->crud_model->get_patients(); foreach($patients as $row): ?>
+				                                        <option value="<?php echo $row['patient_id'];?>"><?php echo $row['name'];?>
+				                                        </option>
+				                                        <?php endforeach; ?>
+				                                    </select>
+				                                </div>
+				                            </div>
+
+
+
 					
-					<div class="form-group">
+					<!-- <div class="form-group">
                  		<label class="col-md-12" for="example-text"><?php echo get_phrase('class');?></label>
                     	<div class="col-sm-12">
 							<select name="class_id" class="form-control select2" style="width:100%"id="class_id" onchange="return get_class_sections(this.value)">
@@ -43,7 +63,7 @@
 		                            <option value=""><?php echo get_phrase('select_class_first');?></option>
 			                    </select>
 			                </div>
-					</div>
+					</div> -->
 
 
                     <div class="form-group">
@@ -108,7 +128,7 @@
                 			<input type="checkbox" id="check" value="1" name="send_notification_sms"> <i></i> <?=get_phrase('send_notification_sms')?>
 						</div>
                         <p style="color:red" id="initial">Meeting will not be sent to mobile number(s)!</p>
-                        <p style="color:green" id="send_sms">Meetting info will be sent to parent and students' phone number(s). Note that only parent(s) and student(s) in the class selected will receive message</p>
+                        <p style="color:green" id="send_sms">Meetting info will be sent to parent and patients' phone number(s). Note that only parent(s) and patient(s) in the class selected will receive message</p>
             	</div>
  `           </div>
         </div>`
@@ -123,7 +143,7 @@
         </div>
     </div>
 </div>
-                    <script type="text/javascript">
+                    <!-- <script type="text/javascript">
 
 function get_class_sections(class_id) {
 
@@ -161,4 +181,34 @@ $(document).ready(function(){
     get_class_sections(class_id);
 });
 
-</script>
+</script> -->
+
+
+<script type="text/javascript">
+function get_group_sub_groups(group_id) {
+
+    $.ajax({
+        url: '<?php echo base_url();?>admin/get_group_sub_group/' + group_id,
+        success: function(response) {
+            jQuery('#section_selector_holder').html(response);
+        }
+    });
+
+}
+
+
+$('#check').click(function() {
+
+    if ($('#check').is(':checked') == true) {
+        $("#send_sms").show(500);
+        $("#initial").hide(500);
+    } else {
+
+        $("#send_sms").hide(500);
+        $("#initial").show(500);
+    }
+
+});
+
+$("#send_sms").hide();
+				</script>

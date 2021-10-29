@@ -112,7 +112,7 @@
 			interfaceConfigOverwrite: {
 			filmStripOnly: true,
            //TOOLBAR_BUTTONS: [],
-          //TOOLBAR_BUTTONS: ['microphone', 'camera', 'mute-everyone', 'participant', 'fullscreen', 'fodeviceselection', 'hangup', 'chat','sharevideo', 'raisehand','tileview','videobackgroundblur',],
+          TOOLBAR_BUTTONS: ['microphone', 'camera', 'mute-everyone', 'participant', 'fullscreen', 'fodeviceselection', 'hangup', 'chat','sharevideo', 'raisehand','tileview','videobackgroundblur',],
 			}
  
 

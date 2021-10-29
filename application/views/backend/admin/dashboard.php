@@ -388,11 +388,11 @@
              </div>
          </div>
      </div>
-     <!-- <div class="col-sm-6">
+     <div class="col-sm-6">
                     <div class="panel panel-info">
 
 <div class="panel-body table-responsive">
-    <?php echo get_phrase('Recently Added Patients');?>
+    <?php echo get_phrase('Recently Added doctors');?>
     <hr class="sep-2">
                                 <table id="example23" class="display nowrap" cellspacing="0" width="100%">
                                     <thead>
@@ -405,12 +405,12 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                            <?php $get_patient_from_model = $this->crud_model->list_all_patient_and_order_with_patient_id();
-                                    foreach ($get_patient_from_model as $key => $patient):?>
-                                            <td><img src="<?php echo $patient['face_file'];?>" class="img-circle" width="40px" height="40px"></td>
-                                            <td><?php echo $patient['name'];?></td>
-                                            <td><?php echo $patient['email'];?></td>
-                                            <td><?php echo $patient['phone'];?></td>
+                            <?php $get_doctor_from_model = $this->crud_model->list_all_newuser_and_order_with_newuser_id();
+                                    foreach ($get_doctor_from_model as $key => $doctor):?>
+                                            <td><img src="<?php echo $doctor['face_file'];?>" class="img-circle" width="40px" height="40px"></td>
+                                            <td><?php echo $doctor['name'];?></td>
+                                            <td><?php echo $doctor['email'];?></td>
+                                            <td><?php echo $doctor['phone'];?></td>
                                         </tr>
                                     <?php endforeach;?>
                                        
@@ -418,6 +418,6 @@
                                 </table>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
  </div>
  <!-- /.row -->

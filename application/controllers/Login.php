@@ -15,13 +15,13 @@ class Login extends CI_Controller {
       
         if ($this->session->userdata('superadmin_login') == 1) redirect (base_url(). 'superadmin/school_setting');
         if ($this->session->userdata('admin_login', 'clinic_id')== 1) redirect (base_url(). 'admin/dashboard');
-        if ($this->session->userdata('hrm_login')== 1) redirect (base_url(). 'hrm/dashboard'); 
-        if ($this->session->userdata('hostel_login')== 1) redirect (base_url(). 'hostel/dashboard');
-        if ($this->session->userdata('accountant_login')== 1) redirect (base_url(). 'accountant/dashboard');
-        if ($this->session->userdata('librarian_login')== 1) redirect (base_url(). 'librarian/dashboard'); 
-        if ($this->session->userdata('teacher_login')== 1) redirect (base_url(). 'teacher/dashboard');   
+        // if ($this->session->userdata('hrm_login')== 1) redirect (base_url(). 'hrm/dashboard'); 
+        // if ($this->session->userdata('hostel_login')== 1) redirect (base_url(). 'hostel/dashboard');
+        // if ($this->session->userdata('accountant_login')== 1) redirect (base_url(). 'accountant/dashboard');
+        // if ($this->session->userdata('librarian_login')== 1) redirect (base_url(). 'librarian/dashboard'); 
+        // if ($this->session->userdata('teacher_login')== 1) redirect (base_url(). 'teacher/dashboard');   
         if ($this->session->userdata('parent_login')== 1) redirect (base_url(). 'parent/dashboard'); 
-        if ($this->session->userdata('student_login')== 1) redirect (base_url(). 'student/dashboard'); 
+        // if ($this->session->userdata('student_login')== 1) redirect (base_url(). 'student/dashboard'); 
         if ($this->session->userdata('doctor_login')== 1) redirect (base_url(). 'doctor/dashboard'); 
         if ($this->session->userdata('patient_login')== 1) redirect (base_url(). 'patient/dashboard'); 
         $this->load->view('backend/login');
@@ -51,37 +51,37 @@ class Login extends CI_Controller {
         }
 
 
-        if($login_user == 'hrm') {
-          $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
-          redirect(base_url() . 'hrm/dashboard', 'refresh');
-        }
+        // if($login_user == 'hrm') {
+        //   $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
+        //   redirect(base_url() . 'hrm/dashboard', 'refresh');
+        // }
 
-        if($login_user == 'hostel') {
-          $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
-          redirect(base_url() . 'hostel/dashboard', 'refresh');
-        }
+        // if($login_user == 'hostel') {
+        //   $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
+        //   redirect(base_url() . 'hostel/dashboard', 'refresh');
+        // }
 
-        if($login_user == 'accountant') {
-          $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
-          redirect(base_url() . 'accountant/dashboard', 'refresh');
-        }
-        if($login_user == 'librarian') {
-          $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
-          redirect(base_url() . 'librarian/dashboard', 'refresh');
-        }
+        // if($login_user == 'accountant') {
+        //   $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
+        //   redirect(base_url() . 'accountant/dashboard', 'refresh');
+        // }
+        // if($login_user == 'librarian') {
+        //   $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
+        //   redirect(base_url() . 'librarian/dashboard', 'refresh');
+        // }
         if($login_user == 'parent') {
           $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
           redirect(base_url() . 'parents/dashboard', 'refresh');
         }
 
-        if($login_user == 'student') {
-          $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
-          redirect(base_url() . 'student/dashboard', 'refresh');
-        }
-        if($login_user == 'teacher') {
-          $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
-          redirect(base_url() . 'teacher/dashboard', 'refresh');
-        }
+        // if($login_user == 'student') {
+        //   $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
+        //   redirect(base_url() . 'student/dashboard', 'refresh');
+        // }
+        // if($login_user == 'teacher') {
+        //   $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
+        //   redirect(base_url() . 'teacher/dashboard', 'refresh');
+        // }
         if($login_user == 'doctor') {
           $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
           redirect(base_url() . 'doctor/dashboard', 'refresh');
@@ -104,27 +104,27 @@ class Login extends CI_Controller {
       if($login_user == 'admin'){
           $this->login_model->logout_model_for_admin();
       }
-      if($login_user == 'hrm'){
-        $this->login_model->logout_model_for_hrm();
-      }
-      if($login_user == 'hostel'){
-        $this->login_model->logout_model_for_hostel();
-      }
-      if($login_user == 'accountant'){
-        $this->login_model->logout_model_for_accountant();
-      }
-      if($login_user == 'librarian'){
-        $this->login_model->logout_model_for_librarian();
-      }
+      // if($login_user == 'hrm'){
+      //   $this->login_model->logout_model_for_hrm();
+      // }
+      // if($login_user == 'hostel'){
+      //   $this->login_model->logout_model_for_hostel();
+      // }
+      // if($login_user == 'accountant'){
+      //   $this->login_model->logout_model_for_accountant();
+      // }
+      // if($login_user == 'librarian'){
+      //   $this->login_model->logout_model_for_librarian();
+      // }
       if($login_user == 'parent'){
         $this->login_model->logout_model_for_parent();
       }
-      if($login_user == 'student'){
-        $this->login_model->logout_model_for_student();
-      }
-      if($login_user == 'teacher'){
-        $this->login_model->logout_model_for_teacher();
-      }
+      // if($login_user == 'student'){
+      //   $this->login_model->logout_model_for_student();
+      // }
+      // if($login_user == 'teacher'){
+      //   $this->login_model->logout_model_for_teacher();
+      // }
       if($login_user == 'doctor'){
         $this->login_model->logout_model_for_doctor();
       }

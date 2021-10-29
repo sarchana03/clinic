@@ -246,6 +246,29 @@ class Crud_model extends CI_Model {
         return $data;
     }
 
+    function list_all_newuser_and_order_with_newuser_id(){
+
+        $data = array();
+        $sql = "select * from newuser order by user_id desc limit 0, 5";
+        $all_newuser_selected = $this->db->query($sql)->result_array();
+
+        foreach($all_newuser_selected as $key => $selected_newusers_from_newuser_table){
+            $user_id = $selected_newusers_from_newuser_table['newuser_id'];
+            $face_file = 'uploads/newuser_image/'. $user_id . '.jpg';
+            if(!file_exists($face_file)){
+                $face_file = 'uploads/newuser_image/default_image.jpg/';
+            }
+
+            $selected_newusers_from_newuser_table['face_file'] = base_url() . $face_file;
+            array_push($data, $selected_newusers_from_newuser_table);
+        }
+
+        return $data;
+    }
+
+
+
+
 
 
 

@@ -10,9 +10,9 @@ $running_year   = $this->db->get_where('settings', array('type' => 'session'))->
 <?php include 'css.php'; ?>
 
     <!-- Preloader -->
-    <div class="preloader">
+    <!-- <div class="preloader">
         <div class="cssload-speeding-wheel"></div>
-    </div>
+    </div> -->
     <div id="wrapper">
     
 

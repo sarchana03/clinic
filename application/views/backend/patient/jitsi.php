@@ -4,7 +4,7 @@
 				  	<div class="panel panel-info">
                           
                                 <div class="panel-body table-responsive">
-								  <?php echo get_phrase('list_consultancy_meeting');?>
+								  <?php echo get_phrase('list_live_class');?>
 								  <hr class="sep-2">
 			
                                 <table id="example23" class="display nowrap" cellspacing="0" width="100%">
@@ -14,7 +14,6 @@
                             <th><?=get_phrase('title')?></th>
 							<!-- <th><?=get_phrase('class')?></th>
 							<th><?=get_phrase('section')?></th> -->
-							<!-- <th><?=get_phrase('doctor')?></th> -->
 							<th><?=get_phrase('meeting_date')?></th>
 							<th><?=get_phrase('meeting_time')?></th>
 							<th><?=get_phrase('status')?></th>
@@ -42,7 +41,6 @@
 							<td><?=$row['title'];?></td>
 							<!-- <td><?=$this->crud_model->get_type_name_by_id('class', $row['class_id']);?></td>
 							<td><?=$this->crud_model->get_type_name_by_id('section', $row['section_id']);?></td> -->
-							<!-- <td><?=$this->crud_model->get_type_name_by_id('patient', $row['patient_id']);?></td> -->
 							<td><?=date('d M, Y', $row['meeting_date'])?></td>
                             <td><?=$row['start_time'] .' - '.$row['end_time']?></td>
 							<td><span class="label label-<?php if($row['status'] == 'pending') echo 'warning';elseif($row['status'] == 'live') echo 'success'; else echo 'danger';?>"><?=$row['status']?></span></td>

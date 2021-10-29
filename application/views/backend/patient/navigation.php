@@ -43,7 +43,7 @@
     <li> <a href="<?php echo base_url();?>patient/dashboard" class="waves-effect"><i class="ti-dashboard p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('Dashboard') ;?></span></a> </li>
 
               <li class="<?php if ($page_name == 'jitsi') echo 'active';?>">
-        <a href="<?php echo base_url();?>patient/jitsi">
+        <a href="<?php echo base_url(); ?>patient/jitsi">
         <i class="fa fa-laptop p-r-10"></i>
         <span class="hide-menu"><?php echo get_phrase('my_meeting');?></span>
     </a>

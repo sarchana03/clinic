@@ -29,7 +29,9 @@
 				                                    for="example-text"><?php echo get_phrase('patient');?></label>
 				                                <div class="col-sm-12">
 				                                    <select name="patient_id" class="form-control select2" style="width:100%"
-				                                        id="patient_id" onchange="return get_group_sub_groups(this.value)">
+				                                        id="patient_id"
+														 onchange="return get_group_sub_groups(this.value)"
+														 >
 				                                        <option value=""><?php echo get_phrase('select');?></option>
 				                                        <?php 
 								$patients = $this->crud_model->get_patients(); foreach($patients as $row): ?>

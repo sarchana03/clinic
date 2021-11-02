@@ -1,5 +1,5 @@
  <!--row -->
- <div class="dashboard-box">
+ <!-- <div class="dashboard-box">
      <div class="dashboard-box-in">
 
          <div class="r-icon-stats">
@@ -8,7 +8,7 @@
                  <h4><?php echo $this->db->count_all_results('student');?></h4>
              </div>
          </div>
-         <span class="text-muted"><?php echo get_phrase('Appointments');?></span>
+         <span class="text-muted"><?php echo get_phrase('Appointmnmmmnmnents');?></span>
 
      </div>
      <div class="dashboard-box-in">
@@ -33,7 +33,7 @@
          <span class="text-muted"><?php echo get_phrase('patients');?></span>
 
      </div>
-     <!-- <div class="dashboard-box-in">
+     <div class="dashboard-box-in">
                         <div class="white-box-in pink-bg">
                             <div class="r-icon-statsy">
                                 <i class="ti-user bg-megna"></i>
@@ -43,9 +43,9 @@
                             </div>
                                     <span class="text-muted"><?php echo get_phrase('Accontants');?></span>
                         </div>
-                    </div> -->
+                    </div>
 
-     <!-- <div class="dashboard-box-in">
+     <div class="dashboard-box-in">
                         <div class="white-box-in yellow-bg">
                             <div class="r-icon-statsb">
                                 <i class="ti-money bg-megna"></i>
@@ -64,8 +64,8 @@
 
                             <span class="text-muted"><?php echo get_phrase('Expense');?></span>
                         </div>
-                    </div> -->
-     <!-- <div class="dashboard-box-in">
+                    </div>
+     <div class="dashboard-box-in">
                         <div class="white-box-in dark-pink-bg">
                             <div class="r-icon-stats">
                                 <i class="ti-money bg-megna"></i>
@@ -84,7 +84,7 @@
                             </div>
                                     <span class="text-muted"><?php echo get_phrase('Income');?></span>
                         </div>
-                    </div> -->
+                    </div>
      <div class="dashboard-box-in">
 
          <div class="r-icon-statsy">
@@ -96,7 +96,7 @@
          <span class="text-muted"><?php echo get_phrase('Admin');?></span>
 
      </div>
-     <!-- <div class="dashboard-box-in">
+     <div class="dashboard-box-in">
                         <div class="white-box-in orange-bg">
                             <div class="r-icon-stats">
                                 <i class="ti-wallet bg-megna"></i>
@@ -115,9 +115,9 @@
                             </div>
                                     <span class="text-muted"><?php echo get_phrase('Attendance');?></span>
                         </div>
-                    </div> -->
+                    </div>
 
- </div>
+ </div> -->
  <!--/row -->
  <!-- .row -->
  <?php /*
@@ -353,8 +353,49 @@
      </div>
  </div>
 
+ <!-- <div class="appointment-section">
+     <div class="appointment-box">
+      <table>
+          <thead>
+          <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+
+          </tr>
+          </thead>
+
+          <tr>
+                             <?php $get_newuser_from_model = $this->crud_model->list_all_newuser_and_order_with_newuser_id();
+                                    foreach ($get_newuser_from_model as $key => $newuser):?>
+                            
+                             <td><?php echo $newuser['name'];?></td>
+                             <td><?php echo $newuser['email'];?></td>
+                             <td><?php echo $newuser['phone'];?></td>
+                         </tr>
+                         <?php endforeach;?>
+      </table>
+       
+
+     </div>
+     <div class="appointment-box">
+         <div class="data-required">
+
+         </div>
+         <div class="data-received">
+             
+         </div>
+
+     </div>
+ </div> -->
+
+
+
+
+
+
  <div class="row">
-     <div class="col-sm-12">
+     <!-- <div class="col-sm-12">
          <div class="panel panel-info">
 
              <div class="panel-body table-responsive">
@@ -373,10 +414,42 @@
                      <tbody>
 
                          <tr>
-                             <?php $get_doctor_from_model = $this->crud_model->list_all_doctor_and_order_with_doctor_id();
-                                    foreach ($get_doctor_from_model as $key => $doctor):?>
-                             <td><img src="<?php echo $doctor['face_file'];?>" class="img-circle" width="40px"
+                             <?php $get_newuser_from_model = $this->crud_model->list_all_newuser_and_order_with_newuser_id();
+                                    foreach ($get_newuser_from_model as $key => $newuser):?>
+                             <td><img src="<?php echo $newuser['face_file'];?>" class="img-circle" width="40px"
                                      height="40px"></td>
+                             <td><?php echo $newuser['name'];?></td>
+                             <td><?php echo $newuser['email'];?></td>
+                             <td><?php echo $newuser['phone'];?></td>
+                         </tr>
+                         <?php endforeach;?>
+
+                     </tbody>
+                 </table>
+             </div>
+         </div>
+     </div> -->
+     <div class="col-sm-12">
+         <div class="panel panel-info">
+
+             <div class="panel-body table-responsive">
+                 <?php echo get_phrase('Recently Received Appointments');?>
+                 <hr class="sep-2">
+                 <table id="example23" class="display nowrap" cellspacing="0" width="100%">
+                     <thead>
+                         <tr>
+                             <!-- <th>Image</th> -->
+                             <th>Name</th>
+                             <th>Email</th>
+                             <th>Phone</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr>
+                             <?php $get_doctor_from_model = $this->crud_model->list_all_newuser_and_order_with_newuser_id();
+                                    foreach ($get_doctor_from_model as $key => $doctor):?>
+                             <!-- <td><img src="<?php echo $doctor['face_file'];?>" class="img-circle" width="40px"
+                                     height="40px"></td> -->
                              <td><?php echo $doctor['name'];?></td>
                              <td><?php echo $doctor['email'];?></td>
                              <td><?php echo $doctor['phone'];?></td>
@@ -388,37 +461,5 @@
              </div>
          </div>
      </div>
-     <!-- <div class="col-sm-6">
-         <div class="panel panel-info">
-
-             <div class="panel-body table-responsive">
-                 <?php echo get_phrase('Recently Added doctors');?>
-                 <hr class="sep-2">
-                 <table id="example23" class="display nowrap" cellspacing="0" width="100%">
-                     <thead>
-                         <tr>
-                             <th>Image</th>
-                             <th>Name</th>
-                             <th>Email</th>
-                             <th>Phone</th>
-                         </tr>
-                     </thead>
-                     <tbody>
-                         <tr>
-                             <?php $get_doctor_from_model = $this->crud_model->list_all_newuser_and_order_with_newuser_id();
-                                    foreach ($get_doctor_from_model as $key => $doctor):?>
-                             <td><img src="<?php echo $doctor['face_file'];?>" class="img-circle" width="40px"
-                                     height="40px"></td>
-                             <td><?php echo $doctor['name'];?></td>
-                             <td><?php echo $doctor['email'];?></td>
-                             <td><?php echo $doctor['phone'];?></td>
-                         </tr>
-                         <?php endforeach;?>
-
-                     </tbody>
-                 </table>
-             </div>
-         </div>
-     </div> -->
  </div>
  <!-- /.row -->

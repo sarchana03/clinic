@@ -48,6 +48,24 @@
         <?php endif;?> 
     <!---  Permission for Admin Dashboard ends here ------>
 
+
+
+    <!---  Admin to check received appointments starts here --->
+    <li class="<?php if ($page_name == 'appointment') echo 'active';?>">
+        <a href="<?php echo base_url();?>admin/appointment">
+        <i class="fa fa-laptop p-r-10"></i>
+        <span class="hide-menu"><?php echo get_phrase('Appointments');?></span>
+    </a>
+        </li>    
+
+
+
+
+    <!---  Admin to check received appointments ends here --->
+
+
+
+
         <li class="<?php if ($page_name == 'jitsi') echo 'active';?>">
         <a href="<?php echo base_url();?>admin/jitsi">
         <i class="fa fa-laptop p-r-10"></i>

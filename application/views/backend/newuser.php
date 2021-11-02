@@ -49,6 +49,15 @@ $system_title = $this->db->get_where('settings', array('type' => 'system_title')
 
 
         <div class="newuser-block">
+            <div class="newuser-block-inn">
+                <h2>HOSPITAL REGISTRATION FORM</h2>
+                <h3>
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                </h3>
+                <a href="#">wwww.narayanahospital@gmail.com</a>
+
+            </div>
+
             <div class="newuser-block-in">
                 <div class="">
 

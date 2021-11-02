@@ -229,7 +229,7 @@ class Crud_model extends CI_Model {
     function list_all_patient_and_order_with_patient_id(){
 
         $data = array();
-        $sql = "select * from patient order by patient_id desc limit 0, 5";
+        $sql = "select  * from patient order by patient_id desc limit 0, 5";
         $all_patient_selected = $this->db->query($sql)->result_array();
 
         foreach($all_patient_selected as $key => $selected_patients_from_patient_table){

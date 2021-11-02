@@ -4731,15 +4731,50 @@
 
 
                 .newuser-block{
-                    width: 40%;
+                    display: grid;
+                    grid-template-columns: 3fr 2fr;
+                    grid-auto-rows: minmax(400px,auto);
+                    width: 80%;
                     margin: 0 auto; 
                 }
                 .newuser-block .newuser-block-in{
                     background: #fff;
                     padding: 2rem ;
-                    border-radius: 2rem;
+                    border-radius: 1rem;
+                    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
 
                 }
+
+                .newuser-block .newuser-block-inn{
+                    margin: 4rem;
+
+
+
+                }
+                .newuser-block .newuser-block-inn h2{
+                    font-size: 4rem;
+                    color: #090a29;
+                    font-weight: bold;
+                    text-align: center;
+                }
+
+                .newuser-block .newuser-block-inn h3{
+                    font-size: 1.8rem;
+                    color: #090a29;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 6rem 2rem 2rem 2rem;
+                }
+                .newuser-block .newuser-block-inn a{
+                    font-size: 2rem;
+                    font-weight: bold;
+                    text-align: center;
+                    margin: 4rem;
+                }
+
+
+
 
                 .box-width{
                     width: 50%;
@@ -20702,3 +20737,26 @@
     background-color: #2e3192;
     color: #fff;
 }
+
+.appointment-section{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap:2rem;
+    grid-auto-rows: minmax(200px, auto);
+}
+
+.appointment-section .appointment-box{
+    background: #f0f;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap:2rem;
+    /* grid-auto-rows: minmax(200px, auto); */
+}
+.appointment-section .appointment-box h4 {
+    color: #00AEEF;
+}
+.appointment-section .appointment-box h2 {
+    color: #1a0b5c;
+}
+

@@ -7,16 +7,16 @@ class Admin extends CI_Controller {
         parent::__construct();
         		$this->load->database();                                //Load Databse Class
                 $this->load->library('session');					    //Load library for session
-                // $this->load->model('vacancy_model');                    // Load vacancy Model Here
+                $this->load->model('vacancy_model');                    // Load vacancy Model Here
                 $this->load->model('application_model');                // Load Apllication Model Here
-                // $this->load->model('leave_model');                      // Load Apllication Model Here
-                // $this->load->model('award_model');                      // Load Apllication Model Here
-                // $this->load->model('academic_model');                   // Load Apllication Model Here
-                // $this->load->model('student_model');                    // Load Apllication Model Here
-                // $this->load->model('exam_question_model');              // Load Apllication Model Here
-                // $this->load->model('student_payment_model');            // Load Apllication Model Here
-                // $this->load->model('event_model');                      // Load Apllication Model Here
-                // $this->load->model('language_model');                      // Load Apllication Model Here
+                $this->load->model('leave_model');                      // Load Apllication Model Here
+                $this->load->model('award_model');                      // Load Apllication Model Here
+                $this->load->model('academic_model');                   // Load Apllication Model Here
+                $this->load->model('student_model');                    // Load Apllication Model Here
+                $this->load->model('exam_question_model');              // Load Apllication Model Here
+                $this->load->model('student_payment_model');            // Load Apllication Model Here
+                $this->load->model('event_model');                      // Load Apllication Model Here
+                $this->load->model('language_model');                      // Load Apllication Model Here
                 $this->load->model('admin_model');                      // Load Apllication Model Here
                 $this->load->model('live_class_model');	
                 $this->load->model('doctor_model');	
@@ -45,6 +45,8 @@ class Admin extends CI_Controller {
     }
 	/******************* / Admin dashboard code to redirect to admin page if successfull login** */
 
+
+   
 
     function manage_profile($param1 = null, $param2 = null, $param3 = null){
     if ($this->session->userdata('admin_login') != 1) redirect(base_url(), 'refresh');
@@ -120,8 +122,8 @@ class Admin extends CI_Controller {
         $page_data['page_name']     = 'enquiry_category';
         $page_data['page_title']    = get_phrase('Manage Category');
 
-        $school_id = $this->session->userdata('school_id');
-        $page_data['enquiry_category']   = $this->db->get_where('enquiry_category', array('school_id'=>$school_id))->result_array();
+        $clinic_id = $this->session->userdata('clinic_id');
+        $page_data['enquiry_category']   = $this->db->get_where('enquiry_category', array('clinic_id'=>$clinic_id))->result_array();
 
         //$page_data['enquiry_category']  = $this->db->get('enquiry_category')->result_array();
         $this->load->view('backend/index', $page_data);
@@ -255,8 +257,8 @@ class Admin extends CI_Controller {
         $page_data['page_name']         = 'parent';
         $page_data['page_title']        = get_phrase('Manage Parent');
 
-        $school_id = $this->session->userdata('school_id');
-        $page_data['select_parent']   = $this->db->get_where('parent', array('school_id'=>$school_id))->result_array();
+        $clinic_id = $this->session->userdata('clinic_id');
+        $page_data['select_parent']   = $this->db->get_where('parent', array('clinic_id'=>$clinic_id))->result_array();
        
        // $page_data['select_parent']   = $this->db->get_where('parent')->result_array();
 
@@ -444,40 +446,40 @@ class Admin extends CI_Controller {
         $page_data['page_name']         = 'alumni';
         $page_data['page_title']        = get_phrase('Manage Alumni');
 
-        $school_id = $this->session->userdata('school_id');
-        $page_data['select_alumni']   = $this->db->get_where('alumni', array('school_id'=>$school_id))->result_array();
+        $clinic_id = $this->session->userdata('clinic_id');
+        $page_data['select_alumni']   = $this->db->get_where('alumni', array('clinic_id'=>$clinic_id))->result_array();
         
         $this->load->view('backend/index', $page_data);
     }
 
-    function teacher ($param1 = null, $param2 = null, $param3 = null){
+    // function teacher ($param1 = null, $param2 = null, $param3 = null){
 
-        if($param1 == 'insert'){
-            $this->teacher_model->insetTeacherFunction();
-            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
-            redirect(base_url(). 'admin/teacher', 'refresh');
-        }
+    //     if($param1 == 'insert'){
+    //         $this->teacher_model->insetTeacherFunction();
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+    //         redirect(base_url(). 'admin/teacher', 'refresh');
+    //     }
 
-        if($param1 == 'update'){
-            $this->teacher_model->updateTeacherFunction($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-            redirect(base_url(). 'admin/teacher', 'refresh');
-        }
+    //     if($param1 == 'update'){
+    //         $this->teacher_model->updateTeacherFunction($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+    //         redirect(base_url(). 'admin/teacher', 'refresh');
+    //     }
 
 
-        if($param1 == 'delete'){
-            $this->teacher_model->deleteTeacherFunction($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
-            redirect(base_url(). 'admin/teacher', 'refresh');
-        }
+    //     if($param1 == 'delete'){
+    //         $this->teacher_model->deleteTeacherFunction($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+    //         redirect(base_url(). 'admin/teacher', 'refresh');
+    //     }
 
-        $page_data['page_name']     = 'teacher';
-        $page_data['page_title']    = get_phrase('Manage Teacher');
-        $school_id = $this->session->userdata('school_id');
-        $page_data['select_teacher']  = $this->db->get_where('teacher',array('school_id'=>$school_id))->result_array();
-        $this->load->view('backend/index', $page_data);
+    //     $page_data['page_name']     = 'teacher';
+    //     $page_data['page_title']    = get_phrase('Manage Teacher');
+    //     $school_id = $this->session->userdata('school_id');
+    //     $page_data['select_teacher']  = $this->db->get_where('teacher',array('school_id'=>$school_id))->result_array();
+    //     $this->load->view('backend/index', $page_data);
 
-    }
+    // }
 
 
     /**   admin to doctor funtion ***/ 
@@ -596,7 +598,7 @@ class Admin extends CI_Controller {
         $page_data['status']        = $param1;
         $page_data['page_name']     = 'application';
 
-        $school_id = $this->session->userdata('school_id');
+        // $school_id = $this->session->userdata('school_id');
         //$page_data['select_vacancy']  = $this->db->get_where('vacancy',array('school_id'=>$school_id))->result_array();
         $page_data['page_title']    = get_phrase('Job Applicant');
         $this->load->view('backend/index', $page_data);
@@ -809,6 +811,14 @@ class Admin extends CI_Controller {
     //     }
 
 
+    function appointment() {
+        $page_data['page_name'] = 'appointment';
+        $page_data['page_title'] = get_phrase('appointments');
+    $clinic_id = $this->session->userdata('clinic_id');
+
+        $this->load->view('backend/index', $page_data);
+    }
+
 
 /***********  The function manages Class Information  ***********************/
 function groups ($param1 = null, $param2 = null, $param3 = null){
@@ -835,10 +845,12 @@ function groups ($param1 = null, $param2 = null, $param3 = null){
 
     $page_data['page_name']     = 'group';
     $page_data['page_title']    = get_phrase('Manage group');
-    $school_id = $this->session->userdata('clinic_id');
+    $clinic_id = $this->session->userdata('clinic_id');
     $this->load->view('backend/index', $page_data);
 
 }
+
+
 
 
 /***********  The function manages Section  ***********************/
@@ -864,7 +876,7 @@ function sub_group ($param1 = null, $param2 = null, $param3 = null){
 
     $page_data['page_name']     = 'sub_group';
     $page_data['page_title']    = get_phrase('Manage sub_group');
-    $school_id = $this->session->userdata('clinic_id');
+    $clinic_id = $this->session->userdata('clinic_id');
     $this->load->view('backend/index', $page_data);
 }
 
@@ -1449,72 +1461,72 @@ function sub_group ($param1 = null, $param2 = null, $param3 = null){
 
 
     /***********  The function below add, update and delete examination table ***********************/
-    function createExamination ($param1 = null, $param2 = null, $param3 = null){
+    // function createExamination ($param1 = null, $param2 = null, $param3 = null){
 
-        if($param1 == 'create'){
-            $this->exam_model->createExamination();
-            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
-            redirect(base_url(). 'admin/createExamination', 'refresh');
-        }
+    //     if($param1 == 'create'){
+    //         $this->exam_model->createExamination();
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+    //         redirect(base_url(). 'admin/createExamination', 'refresh');
+    //     }
 
-        if($param1 == 'update'){
-            $this->exam_model->updateExamination($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-            redirect(base_url(). 'admin/createExamination', 'refresh');
-        }
+    //     if($param1 == 'update'){
+    //         $this->exam_model->updateExamination($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+    //         redirect(base_url(). 'admin/createExamination', 'refresh');
+    //     }
 
-        if($param1 == 'delete'){
-            $this->exam_model->deleteExamination($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
-            redirect(base_url(). 'admin/createExamination', 'refresh');
-        }
+    //     if($param1 == 'delete'){
+    //         $this->exam_model->deleteExamination($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+    //         redirect(base_url(). 'admin/createExamination', 'refresh');
+    //     }
 
-        $page_data['page_name']     = 'createExamination';
-        $school_id = $this->session->userdata('school_id');
-        $page_data['page_title']    = get_phrase('Create Exam');
-        $this->load->view('backend/index', $page_data);
-    }
+    //     $page_data['page_name']     = 'createExamination';
+    //     $school_id = $this->session->userdata('school_id');
+    //     $page_data['page_title']    = get_phrase('Create Exam');
+    //     $this->load->view('backend/index', $page_data);
+    // }
     /***********  The function below add, update and delete examination table ends here ***********************/
 
     /***********  The function below add, update and delete student payment table ***********************/
-    function student_payment ($param1 = null, $param2 = null, $param3 = null){
+    // function student_payment ($param1 = null, $param2 = null, $param3 = null){
 
-        if($param1 == 'single_invoice'){
-            $this->student_payment_model->createStudentSinglePaymentFunction();
-            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
-            redirect(base_url(). 'admin/student_invoice', 'refresh');
-        }
+    //     if($param1 == 'single_invoice'){
+    //         $this->student_payment_model->createStudentSinglePaymentFunction();
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+    //         redirect(base_url(). 'admin/student_invoice', 'refresh');
+    //     }
 
-        if($param1 == 'mass_invoice'){
-            $this->student_payment_model->createStudentMassPaymentFunction();
-            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-            redirect(base_url(). 'admin/student_invoice', 'refresh');
-        }
+    //     if($param1 == 'mass_invoice'){
+    //         $this->student_payment_model->createStudentMassPaymentFunction();
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+    //         redirect(base_url(). 'admin/student_invoice', 'refresh');
+    //     }
 
-        if($param1 == 'update_invoice'){
-            $this->student_payment_model->updateStudentPaymentFunction($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-            redirect(base_url(). 'admin/student_invoice', 'refresh');
-        }
+    //     if($param1 == 'update_invoice'){
+    //         $this->student_payment_model->updateStudentPaymentFunction($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+    //         redirect(base_url(). 'admin/student_invoice', 'refresh');
+    //     }
 
-        if($param1 == 'take_payment'){
-            $this->student_payment_model->takeNewPaymentFromStudent($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-            redirect(base_url(). 'admin/student_invoice', 'refresh');
-        }
+    //     if($param1 == 'take_payment'){
+    //         $this->student_payment_model->takeNewPaymentFromStudent($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+    //         redirect(base_url(). 'admin/student_invoice', 'refresh');
+    //     }
 
 
-        if($param1 == 'delete_invoice'){
-            $this->student_payment_model->deleteStudentPaymentFunction($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
-            redirect(base_url(). 'admin/student_invoice', 'refresh');
-        }
+    //     if($param1 == 'delete_invoice'){
+    //         $this->student_payment_model->deleteStudentPaymentFunction($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+    //         redirect(base_url(). 'admin/student_invoice', 'refresh');
+    //     }
 
-        $page_data['page_name']     = 'student_payment';
-        $school_id = $this->session->userdata('clinic_id');
-        $page_data['page_title']    = get_phrase('Student Payment');
-        $this->load->view('backend/index', $page_data);
-    }   
+    //     $page_data['page_name']     = 'student_payment';
+    //     $clinic_id = $this->session->userdata('clinic_id');
+    //     $page_data['page_title']    = get_phrase('Student Payment');
+    //     $this->load->view('backend/index', $page_data);
+    // }   
     /***********  / Student payment ends here ***********************/
     
     function get_class_student($class_id){
@@ -1548,119 +1560,119 @@ function sub_group ($param1 = null, $param2 = null, $param3 = null){
     }
 
     /***********  The function below add, update and delete publisher table ***********************/
-    function publisher ($param1 = null, $param2 = null, $param3 = null){
+    // function publisher ($param1 = null, $param2 = null, $param3 = null){
 
-        if($param1 == 'create'){
-            $this->library_model->createPublisherFunction();
-            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
-            redirect(base_url(). 'admin/publisher', 'refresh');
-        }
+    //     if($param1 == 'create'){
+    //         $this->library_model->createPublisherFunction();
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+    //         redirect(base_url(). 'admin/publisher', 'refresh');
+    //     }
 
-        if($param1 == 'update'){
-            $this->library_model->updatePublisherFunction($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-            redirect(base_url(). 'admin/publisher', 'refresh');
-        }
+    //     if($param1 == 'update'){
+    //         $this->library_model->updatePublisherFunction($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+    //         redirect(base_url(). 'admin/publisher', 'refresh');
+    //     }
 
-        if($param1 == 'delete'){
-            $this->library_model->deletePublisherFunction($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
-            redirect(base_url(). 'admin/publisher', 'refresh');
-        }
+    //     if($param1 == 'delete'){
+    //         $this->library_model->deletePublisherFunction($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+    //         redirect(base_url(). 'admin/publisher', 'refresh');
+    //     }
 
-        $page_data['page_name']     = 'publisher';
-        $school_id = $this->session->userdata('school_id');
-        $page_data['page_title']    = get_phrase('Manage Publisher');
-        $this->load->view('backend/index', $page_data);
-    }
+    //     $page_data['page_name']     = 'publisher';
+    //     $school_id = $this->session->userdata('school_id');
+    //     $page_data['page_title']    = get_phrase('Manage Publisher');
+    //     $this->load->view('backend/index', $page_data);
+    // }
     /***********  The function below add, update and delete publisher table ends here ***********************/
 
 
     /***********  The function below add, update and delete publisher table ***********************/
-    function author ($param1 = null, $param2 = null, $param3 = null){
+    // function author ($param1 = null, $param2 = null, $param3 = null){
 
-        if($param1 == 'create'){
-            $this->library_model->createAuthorFunction();
-            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
-            redirect(base_url(). 'admin/author', 'refresh');
-        }
+    //     if($param1 == 'create'){
+    //         $this->library_model->createAuthorFunction();
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+    //         redirect(base_url(). 'admin/author', 'refresh');
+    //     }
 
-        if($param1 == 'update'){
-            $this->library_model->updateAuthorFunction($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-            redirect(base_url(). 'admin/author', 'refresh');
-        }
+    //     if($param1 == 'update'){
+    //         $this->library_model->updateAuthorFunction($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+    //         redirect(base_url(). 'admin/author', 'refresh');
+    //     }
 
-        if($param1 == 'delete'){
-            $this->library_model->deleteAuthorFunction($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
-            redirect(base_url(). 'admin/author', 'refresh');
-        }
+    //     if($param1 == 'delete'){
+    //         $this->library_model->deleteAuthorFunction($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+    //         redirect(base_url(). 'admin/author', 'refresh');
+    //     }
 
-        $page_data['page_name']     = 'author';
-        $school_id = $this->session->userdata('school_id');
-        $page_data['page_title']    = get_phrase('Manage Author');
-        $this->load->view('backend/index', $page_data);
-    }
+    //     $page_data['page_name']     = 'author';
+    //     $school_id = $this->session->userdata('school_id');
+    //     $page_data['page_title']    = get_phrase('Manage Author');
+    //     $this->load->view('backend/index', $page_data);
+    // }
 
     /***********  The function below add, update and delete publisher table ends here ***********************/
 
     /***********  The function below add, update and delete BookCategory table ***********************/
-    function book_category ($param1 = null, $param2 = null, $param3 = null){
+    // function book_category ($param1 = null, $param2 = null, $param3 = null){
 
-        if($param1 == 'create'){
-            $this->library_model->createBookCategoryFunction();
-            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
-            redirect(base_url(). 'admin/book_category', 'refresh');
-        }
+    //     if($param1 == 'create'){
+    //         $this->library_model->createBookCategoryFunction();
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+    //         redirect(base_url(). 'admin/book_category', 'refresh');
+    //     }
 
-        if($param1 == 'update'){
-            $this->library_model->updateBookCategoryFunction($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-            redirect(base_url(). 'admin/book_category', 'refresh');
-        }
+    //     if($param1 == 'update'){
+    //         $this->library_model->updateBookCategoryFunction($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+    //         redirect(base_url(). 'admin/book_category', 'refresh');
+    //     }
 
-        if($param1 == 'delete'){
-            $this->library_model->deleteBookCategoryFunction($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
-            redirect(base_url(). 'admin/book_category', 'refresh');
-        }
+    //     if($param1 == 'delete'){
+    //         $this->library_model->deleteBookCategoryFunction($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+    //         redirect(base_url(). 'admin/book_category', 'refresh');
+    //     }
 
-        $page_data['page_name']     = 'book_category';
-        $school_id = $this->session->userdata('school_id');
-        $page_data['page_title']    = get_phrase('Book Category');
-        $this->load->view('backend/index', $page_data);
-    }
+    //     $page_data['page_name']     = 'book_category';
+    //     $school_id = $this->session->userdata('school_id');
+    //     $page_data['page_title']    = get_phrase('Book Category');
+    //     $this->load->view('backend/index', $page_data);
+    // }
     /***********  The function below add, update and delete BookCategory table ends here ***********************/
 
 
 
     /***********  The function below add, update and delete book table ***********************/
-    function book ($param1 = null, $param2 = null, $param3 = null){
+    // function book ($param1 = null, $param2 = null, $param3 = null){
 
-        if($param1 == 'create'){
-            $this->library_model->createBookFunction();
-            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
-            redirect(base_url(). 'admin/book', 'refresh');
-        }
+    //     if($param1 == 'create'){
+    //         $this->library_model->createBookFunction();
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+    //         redirect(base_url(). 'admin/book', 'refresh');
+    //     }
 
-        if($param1 == 'update'){
-            $this->library_model->updateBookFunction($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
-            redirect(base_url(). 'admin/book', 'refresh');
-        }
+    //     if($param1 == 'update'){
+    //         $this->library_model->updateBookFunction($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+    //         redirect(base_url(). 'admin/book', 'refresh');
+    //     }
 
-        if($param1 == 'delete'){
-            $this->library_model->deleteBookFunction($param2);
-            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
-            redirect(base_url(). 'admin/book', 'refresh');
-        }
+    //     if($param1 == 'delete'){
+    //         $this->library_model->deleteBookFunction($param2);
+    //         $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+    //         redirect(base_url(). 'admin/book', 'refresh');
+    //     }
 
-        $page_data['page_name']     = 'book';
-        $school_id = $this->session->userdata('school_id');
-        $page_data['page_title']    = get_phrase('Manage Library');
-        $this->load->view('backend/index', $page_data);
-    }
+    //     $page_data['page_name']     = 'book';
+    //     $school_id = $this->session->userdata('school_id');
+    //     $page_data['page_title']    = get_phrase('Manage Library');
+    //     $this->load->view('backend/index', $page_data);
+    // }
     /***********  The function below add, update and delete book table ends here ***********************/
 
     /***********  The function below manages school event ***********************/
@@ -1892,8 +1904,6 @@ function sub_group ($param1 = null, $param2 = null, $param3 = null){
  /* Jitsi */
 
     function jitsi($param1 = null, $param2 = null, $param3 = null){
-
-
         if($param1 == 'add'){
             $this->live_class_model->createNewJitsiClassFunction();
             $this->session->set_flashdata('flash_message', get_phrase('live_class_successfuly_created'));
@@ -1918,6 +1928,12 @@ function sub_group ($param1 = null, $param2 = null, $param3 = null){
         $page_data['page_title'] = get_phrase('jitsi_live_class');
         $this->load->view('backend/index',$page_data);
     }
+
+  
+
+
+
+
 
     function edit_jitsi($jitsi_id){
 

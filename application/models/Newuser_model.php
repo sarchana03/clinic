@@ -10,34 +10,34 @@ class Newuser_model extends CI_Model {
 
 
     // function below insert into newuser table //
-         function createNewuser(){
+    //      function createNewuser(){
 
-        $page_data = array(
-            'clinic_id'     => $this->session->userdata('clinic_id'),
-            'name'          => html_escape($this->input->post('name')),
-            'gender'           => html_escape($this->input->post('gender')),
-            'blood_group'           => html_escape($this->input->post('blood_group')),
-            'phone'         => html_escape($this->input->post('phone')),
-            'email'         => html_escape($this->input->post('email')),
-            'password'        => sha1($this->input->post('password')),
-            'address'       => html_escape($this->input->post('address'))
-        );
+    //     $page_data = array(
+    //         'clinic_id'     => $this->session->userdata('clinic_id'),
+    //         'name'          => html_escape($this->input->post('name')),
+    //         'gender'           => html_escape($this->input->post('gender')),
+    //         'blood_group'           => html_escape($this->input->post('blood_group')),
+    //         'phone'         => html_escape($this->input->post('phone')),
+    //         'email'         => html_escape($this->input->post('email')),
+    //         'password'        => sha1($this->input->post('password')),
+    //         'address'       => html_escape($this->input->post('address'))
+    //     );
 
-              $this->db->insert('newuser', $page_data);
-    $user_id = $this->db->insert_id();
+    //           $this->db->insert('newuser', $page_data);
+    // $user_id = $this->db->insert_id();
     // move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/newuser_image/' . $user_id . '.jpg');			// image with user ID
 
-    }
-
-
-
-    // function save($capsule)
-    // {
-    //     $insert = $this->db->insert('newuser', $capsule);
-    //     if($insert){
-    //         return $msg = "Data inserted successfully ";
-    //     }
     // }
+
+
+
+    function save($capsule)
+    {
+        $insert = $this->db->insert('newuser', $capsule);
+        if($insert){
+            return $msg = "Data inserted successfully ";
+        }
+    }
 
 
 

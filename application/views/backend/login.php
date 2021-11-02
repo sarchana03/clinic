@@ -69,7 +69,7 @@ $system_title = $this->db->get_where('settings', array('type' => 'system_title')
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <input class="form-control" type="password" name="password" required=""
-                                    placeholder="<?php echo get_phrase('passord');?>" style="width:100%">
+                                    placeholder="<?php echo get_phrase('password');?>" style="width:100%">
                             </div>
                         </div>
 
@@ -135,7 +135,7 @@ $system_title = $this->db->get_where('settings', array('type' => 'system_title')
                         </h3>
                         <div class="text-center">
                             <button class="btn btn-infoo btn-rounded text-center" type="submit"
-                                style="width:40%; color:white" >Register
+                                style="width:40%; color:white" >Sign In
                                 <!-- <?php echo get_phrase('Register');?> -->
                             </button>
                             <!-- <a href="<?php echo base_url() ?>newuser.php">dsdsd</a> -->

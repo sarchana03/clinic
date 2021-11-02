@@ -49,6 +49,11 @@ class Login extends CI_Controller {
           $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
           redirect(base_url() . 'admin/dashboard', 'refresh');
         }
+        
+        if($login_user == 'doctor') {
+          $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
+          redirect(base_url() . 'doctor/dashboard', 'refresh');
+        }
 
 
         // if($login_user == 'hrm') {
@@ -82,10 +87,7 @@ class Login extends CI_Controller {
         //   $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
         //   redirect(base_url() . 'teacher/dashboard', 'refresh');
         // }
-        if($login_user == 'doctor') {
-          $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));
-          redirect(base_url() . 'doctor/dashboard', 'refresh');
-        }
+
 
         if($login_user == 'patient') {
           $this->session->set_flashdata('flash_message', get_phrase('Successfully Login'));

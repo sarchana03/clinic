@@ -25,6 +25,7 @@ if($query_admin_role_table->num_rows() < 1)
                     <td>Manage Employee </td>
                     <td>Manage Student </td>
                     <td>Manage Patient </td>
+                    <td>Manage Calendar </td>
                 </tr>
                 <tr>
                     <td><input class="check" name="dashboard" value="1" <?php if($this->db->get_where('admin_role', array('admin_id' => $param2))->row()->dashboard) echo 'checked';?> type="checkbox"></td>
@@ -32,6 +33,7 @@ if($query_admin_role_table->num_rows() < 1)
                     <td><input class="check" name="manage_employee" value="1"  <?php if($this->db->get_where('admin_role', array('admin_id' => $param2))->row()->manage_employee) echo 'checked';?> type="checkbox"></td>
                     <td><input class="check" name="manage_student" value="1" <?php if($this->db->get_where('admin_role', array('admin_id' => $param2))->row()->manage_student) echo 'checked';?> type="checkbox"></td>
                     <td><input class="check" name="manage_patient" value="1" <?php if($this->db->get_where('admin_role', array('admin_id' => $param2))->row()->manage_patient) echo 'checked';?> type="checkbox"></td>
+                    <td><input class="check" name="manage_calendar" value="1" <?php if($this->db->get_where('admin_role', array('admin_id' => $param2))->row()->manage_calendar) echo 'checked';?> type="checkbox"></td>
                 </tr>
                 <tr>
                     <td>Manage Attendance</td>

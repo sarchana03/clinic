@@ -9,10 +9,10 @@
 
              <i class="fa fa-heartbeat" aria-hidden="true"></i>
              <div class="bodystate">
-                 <h4><?php echo $this->db->count_all_results('librarian');?></h4>
+                 <h4><?php echo $this->db->count_all_results('newuser');?></h4>
              </div>
          </div>
-         <span class="text-muted"><?php echo get_phrase('Heart Rate');?></span>
+         <span class="text-muted"><?php echo get_phrase('Appointments');?></span>
      </div>
      <div>
      <div class="dashboard-box-in">
@@ -38,10 +38,10 @@
 
                  <i class="fa fa-user-plus" aria-hidden="true"></i>
                  <div class="bodystate">
-                     <h4><?php echo $this->db->count_all_results('book');?></h4>
+                     <h4><?php echo $this->db->count_all_results('patient');?></h4>
                  </div>
              </div>
-             <span class="text-muted"><?php echo get_phrase('New Patients');?></span>
+             <span class="text-muted"><?php echo get_phrase('Patients');?></span>
      </div> 
      </div>
      <div>

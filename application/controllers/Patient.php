@@ -8,6 +8,8 @@ class Patient extends CI_Controller {
         		$this->load->database();                                //Load Databse Class
                 $this->load->library('session');					    //Load library for session
                 $this->load->model('live_class_model');	
+                $this->load->model('doctor_calendar_model');
+                $this->load->model('patient_calendar_model');
   
     }
 
@@ -70,20 +72,20 @@ class Patient extends CI_Controller {
             $this->load->view('backend/index', $page_data);
         }
 
-        function teacher (){
+        // function teacher (){
 
 
-            $patient_profile = $this->db->get_where('patient', array('patient_id' => $this->session->userdata('patient_id')))->row();
-            $select_patient_class_id = $patient_profile->class_id;
+        //     $patient_profile = $this->db->get_where('patient', array('patient_id' => $this->session->userdata('patient_id')))->row();
+        //     $select_patient_class_id = $patient_profile->class_id;
 
-            $return_teacher_id = $this->db->get_where('subject', array('class_id' => $select_patient_class_id))->row()->teacher_id;
+        //     $return_teacher_id = $this->db->get_where('subject', array('class_id' => $select_patient_class_id))->row()->teacher_id;
 
 
-            $page_data['page_name']     = 'teacher';
-            $page_data['page_title']    = get_phrase('Class Teachers');
-            $page_data['select_teacher']  = $this->db->get_where('teacher', array('teacher_id' => $return_teacher_id))->result_array();
-            $this->load->view('backend/index', $page_data);
-        }
+        //     $page_data['page_name']     = 'teacher';
+        //     $page_data['page_title']    = get_phrase('Class Teachers');
+        //     $page_data['select_teacher']  = $this->db->get_where('teacher', array('teacher_id' => $return_teacher_id))->result_array();
+        //     $this->load->view('backend/index', $page_data);
+        // }
 
         function class_mate (){
 
@@ -206,6 +208,214 @@ class Patient extends CI_Controller {
             $this->load->view('backend/host/jitsi', $page_data);
     
         }
+
+
+        // function doctoravailability() {
+        //     $page_data['page_name'] = 'doctoravailability';
+        //     $page_data['page_title'] = get_phrase('doctor_availability');
+        // $clinic_id = $this->session->userdata('clinic_id');
+    
+        //     $this->load->view('backend/index', $page_data);
+        // }
+
+
+        function appointment(){
+            $page_data['page_name']     = 'appointment';
+            $page_data['page_title']    = get_phrase('manage_teacher_details');
+            $this->load->view('backend/index', $page_data);
+
+}
+function appointment_form($param1 = null, $param2 = null, $param3 = null){
+    if($param1 == 'insert'){
+        $this->appointment_list_model->insertappointment_listFunction();
+        $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+        redirect(base_url(). 'patient/appointment', 'refresh');
+    }
+
+    if($param1 == 'update'){
+        $this->appointment_list_model->updateappointmentFunction($param2);
+        $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+        redirect(base_url(). 'patient/appointment', 'refresh');
+    }
+
+
+    if($param1 == 'delete'){
+        $this->appointment_list_model->deleteappointmentFunction($param2);
+        $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+        redirect(base_url(). 'patient/appointment', 'refresh');
+    }
+            $page_data['page_name']     = 'appointment_form';
+            $page_data['page_title']    = get_phrase('manage_appointment_form');
+            $this->load->view('backend/index', $page_data);
+
+}
+function my_calendar($param1 = null, $param2 = null, $param3 = null){
+    
+ $data_calendar = $this->patient_calendar_model->get_list($this->table);
+        $calendar = array();
+        foreach ($data_calendar as $key => $val) 
+        {
+            $calendar[] = array(
+                            'id'    => intval($val->id), 
+                            'title' => $val->title,
+                            
+                            'doctor_name' => $val->doctor_name,
+
+                             'description' => trim($val->description), 
+                            'start' => date_format( date_create($val->start_date) ,"Y-m-d H:i"),
+                          'end'   => date_format( date_create($val->end_date) ,"Y-m-d H:i"),
+                          'end_time'   => date_format( date_create($val->end_time) ,"Y-m-d H:i"),
+                          'start_time'   => date_format( date_create($val->start_time) ,"Y-m-d H:i"),
+
+
+                            'color' => $val->color,
+                            );
+        }
+
+        $page_data = array();
+    $page_data['page_name']     = 'my_calendar';
+    $page_data['page_title']    = get_phrase('manage_my_calendar');
+    
+    $page_data['get_data']           = json_encode($calendar);
+    $this->load->view('backend/index', $page_data);
+
+}
+
+function save()
+    {
+        $response = array();
+        $this->form_validation->set_rules('title', 'Title cant be empty ', 'required');
+        if ($this->form_validation->run() == TRUE)
+        {
+            $param = $this->input->post();
+
+            $calendar_id = $param['calendar_id'];
+            unset($param['calendar_id']);
+
+            if($calendar_id == 0)
+            {
+                $param['create_at']     = date('d-m-Y H:i');
+                 $title = $this->input->post('title');
+        $description = $this->input->post('description');
+        $start_date = $this->input->post('start_date');
+        $end_date = $this->input->post('end_date');
+        $start_time = $this->input->post('start_time');
+        $end_time = $this->input->post('end_time');
+        $color = $this->input->post('color');
+        $patient_id = $this->input->post('patient_id');
+        $doctor_id = $this->input->post('doctor_id');
+        $doctor_name = $this->input->post('doctor_name');
+        $status = $this->input->post('status');
+        $patient_name = $this->input->post('patient_name');
+
+
+        $param = array(
+            'title' => $title,
+            'description' => $description,
+            'start_date' => $start_date.' '.$start_time,
+            'end_date' => $start_date.' '.$end_time,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'color' => $color,
+            'patient_id' => $patient_id,
+            'doctor_id' => $doctor_id,
+            'doctor_name' => $doctor_name,
+            'status' => $status,
+            'patient_name' => $patient_name,
+
+        );
+                $insert = $this->patient_calendar_model->insert($this->table, $param);
+
+                if ($insert > 0) 
+                {
+                    $response['status'] = TRUE;
+                    $response['notif']  = 'Success add calendar';
+                    $response['id']     = $insert;
+                }
+                else
+                {
+                    $response['status'] = FALSE;
+                    $response['notif']  = 'Server wrong, please save again';
+                }
+            }
+            else
+            {   
+                $param['create_at']     = date('d-m-Y H:i');
+                 $title = $this->input->post('title');
+        $description = $this->input->post('description');
+        $start_date = $this->input->post('start_date');
+        $end_date = $this->input->post('end_date');
+        $start_time = $this->input->post('start_time');
+        $end_time = $this->input->post('end_time');
+        
+
+
+        $param = array(
+            'title' => $title,
+            'description' => $description,
+            'start_date' => $start_date.' '.$start_time,
+            'end_date' => $start_date.' '.$end_time,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            
+
+        );
+                $where      = [ 'id'  => $calendar_id];
+                $param['modified_at']       = date('d-m-Y H:i');
+                $update = $this->patient_calendar_model->update($this->table, $param, $where);
+
+                if ($update > 0) 
+                {
+                    $response['status'] = TRUE;
+                    $response['notif']  = 'Success add calendar';
+                    $response['id']     = $calendar_id;
+                }
+                else
+                {
+                    $response['status'] = FALSE;
+                    $response['notif']  = 'Server wrong, please save again';
+                }
+
+            }
+        }
+        else
+        {
+            $response['status'] = FALSE;
+            $response['notif']  = validation_errors();
+        }
+
+        echo json_encode($response);
+    }
+
+ function delete()
+    {
+        $response       = array();
+        $calendar_id    = $this->input->post('id');
+        if(!empty($calendar_id))
+        {
+            $where = ['id' => $calendar_id];
+            $delete = $this->patient_calendar_model->delete($this->table, $where);
+
+            if ($delete > 0) 
+            {
+                $response['status'] = TRUE;
+                $response['notif']  = 'Success delete calendar';
+            }
+            else
+            {
+                 $response['status'] = FALSE;
+                $response['notif']  = 'Server wrong, please save again';
+            }
+        }
+        else
+        {
+            $response['status'] = FALSE;
+            $response['notif']  = 'Data not found';
+        }
+
+        echo json_encode($response);
+    }
+    
 
 
 

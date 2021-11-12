@@ -249,7 +249,8 @@ class Crud_model extends CI_Model {
     function list_all_newuser_and_order_with_newuser_id(){
 
         $data = array();
-        $sql = "select * from newuser order by user_id desc limit 0, 5";
+        // $sql = "select * from newuser order by user_id desc limit 0, 5";
+        $sql = "select * from newuser order by user_id desc limit 2, 1";
         $all_newuser_selected = $this->db->query($sql)->result_array();
 
         foreach($all_newuser_selected as $key => $selected_newusers_from_newuser_table){
@@ -265,6 +266,73 @@ class Crud_model extends CI_Model {
 
         return $data;
     }
+
+    function list_all_newuser_and_order_with_newuser_idd(){
+
+        $data = array();
+        // $sql = "select * from newuser order by user_id desc limit 0, 5";
+        $sql = "select * from newuser order by user_id desc limit 1, 1";
+        $all_newuser_selected = $this->db->query($sql)->result_array();
+
+        foreach($all_newuser_selected as $key => $selected_newusers_from_newuser_table){
+            $user_id = $selected_newusers_from_newuser_table['newuser_id'];
+            $face_file = 'uploads/newuser_image/'. $user_id . '.jpg';
+            if(!file_exists($face_file)){
+                $face_file = 'uploads/newuser_image/default_image.jpg/';
+            }
+
+            $selected_newusers_from_newuser_table['face_file'] = base_url() . $face_file;
+            array_push($data, $selected_newusers_from_newuser_table);
+        }
+
+        return $data;
+    }
+
+    function list_all_calendar_and_order_with__id(){
+        $patient_id = $this->session->userdata('patient_id');
+    
+            $data = array();
+           
+    
+            $sql = "select * from calendar where patient_id = $patient_id order by id desc";
+            $all_calendar_selected = $this->db->query($sql)->result_array();
+    
+            foreach($all_calendar_selected as $key => $selected_calendar_from_calendar_table){
+                $calendar_id = $selected_calendar_from_calendar_table['doctor_id'];
+                $face_file = 'uploads/doctor_image/'. $id . '.jpg';
+                if(!file_exists($face_file)){
+                    $face_file = 'uploads/doctor_image/default_image.jpg/';
+                }
+    
+                $selected_calendar_from_calendar_table['face_file'] = base_url() . $face_file;
+                array_push($data, $selected_calendar_from_calendar_table);
+            }
+    
+            return $data;
+        }
+        
+    function list_all_calendar_and_order1_with__id(){
+        $doctor_id = $this->session->userdata('doctor_id');
+    
+            $data = array();
+           
+    
+            $sql = "select * from calendar where doctor_id = $doctor_id order by id desc ";
+            $all_calendar_selected = $this->db->query($sql)->result_array();
+    
+            foreach($all_calendar_selected as $key => $selected_calendar_from_calendar_table){
+                $calendar_id = $selected_calendar_from_calendar_table['doctor_id'];
+                $face_file = 'uploads/doctor_image/'. $id . '.jpg';
+                if(!file_exists($face_file)){
+                    $face_file = 'uploads/doctor_image/default_image.jpg/';
+                }
+    
+                $selected_calendar_from_calendar_table['face_file'] = base_url() . $face_file;
+                array_push($data, $selected_calendar_from_calendar_table);
+            }
+    
+            return $data;
+        }
 
 
 
@@ -884,6 +952,29 @@ class Crud_model extends CI_Model {
     function delete_school($param2){
         $this->db->where('school_id', $param2);
         $this->db->delete('school');
+    }
+
+
+    function list_all_appointment_list_model_and_order_with_id(){
+
+        $data = array();
+        $sql = "select * from calendar order by id desc  ";
+        
+
+        $all_appointment_list_selected = $this->db->query($sql)->result_array();
+
+        foreach($all_appointment_list_selected as $key => $selected_appointment_list_from_group_table){
+            $id = $selected_appointment_list_from_group_table['id'];
+           // $face_file = 'uploads/teacher_image/'. $teacher_id . '.jpg';
+            //if(!file_exists($face_file)){
+               // $face_file = 'uploads/teacher_image/default_image.jpg/';
+           //}
+
+            //$selected_teachers_from_teacher_table['face_file'] = base_url() . $face_file;
+            array_push($data, $selected_appointment_list_from_group_table);
+        }
+
+        return $data;
     }
 
 

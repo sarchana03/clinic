@@ -5,7 +5,7 @@
          <div class="r-icon-stats">
              <i class="ti-user bg-megna"></i>
              <div class="bodystate">
-                 <h4><?php echo $this->db->count_all_results('student');?></h4>
+                 <h4><?php echo $this->db->count_all_results('newuser');?></h4>
              </div>
          </div>
          <span class="text-muted"><?php echo get_phrase('Appointments');?></span>
@@ -16,7 +16,7 @@
          <div class="r-icon-statsb">
              <i class="ti-user bg-megna"></i>
              <div class="bodystate">
-                 <h4><?php echo $this->db->count_all_results('teacher');?></h4>
+                 <h4><?php echo $this->db->count_all_results('doctor');?></h4>
              </div>
          </div>
          <span class="text-muted"><?php echo get_phrase('Doctors');?></span>
@@ -27,7 +27,7 @@
          <div class="r-icon-statsw">
              <i class="ti-user bg-megna"></i>
              <div class="bodystate">
-                 <h4><?php echo $this->db->count_all_results('parent');?></h4>
+                 <h4><?php echo $this->db->count_all_results('patient');?></h4>
              </div>
          </div>
          <span class="text-muted"><?php echo get_phrase('patients');?></span>

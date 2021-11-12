@@ -5,6 +5,8 @@ class Admin extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        $this->table        = 'calendar';
+
         		$this->load->database();                                //Load Databse Class
                 $this->load->library('session');					    //Load library for session
                 $this->load->model('vacancy_model');                    // Load vacancy Model Here
@@ -23,7 +25,11 @@ class Admin extends CI_Controller {
                 $this->load->model('patient_model');	
                 $this->load->model('group_model');	
                 $this->load->model('sub_group_model');	
-                $this->load->model('newuser_model');	
+                $this->load->model('newuser_model');
+                $this->load->model('appointment_list_model');
+                
+                
+                $this->load->model('schedule_list_model');	
              // $this->load->model('superadmin_model');	
              
     }
@@ -811,9 +817,9 @@ class Admin extends CI_Controller {
     //     }
 
 
-    function appointment() {
-        $page_data['page_name'] = 'appointment';
-        $page_data['page_title'] = get_phrase('appointments');
+    function newusers() {
+        $page_data['page_name'] = 'newusers';
+        $page_data['page_title'] = get_phrase('newusers');
     $clinic_id = $this->session->userdata('clinic_id');
 
         $this->load->view('backend/index', $page_data);
@@ -1952,12 +1958,221 @@ function sub_group ($param1 = null, $param2 = null, $param3 = null){
     }
 	
 	
-    function chatRoomMessage(){
-        $page_data['user_id'] = $this->input->post('user_id');
-        $page_data['message'] = $this->input->post('chatSend');
+    // function chatRoomMessage(){
+    //     $page_data['user_id'] = $this->input->post('user_id');
+    //     $page_data['message'] = $this->input->post('chatSend');
 
-        $this->db->insert('general_message', $page_data);
-        echo json_encode($page_data);
+    //     $this->db->insert('general_message', $page_data);
+    //     echo json_encode($page_data);
+    // }
+
+
+    function appointment_list($param1 = null, $param2 = null, $param3 = null){
+
+        if($param1 == 'insert'){
+            $this->appointment_list_model->insertappointment_listFunction();
+            $this->session->set_flashdata('flash_message', get_phrase('Data saved successfully'));
+            redirect(base_url(). 'admin/appointment_list', 'refresh');
+        }
+    
+        if($param1 == 'update'){
+            $this->appointment_list_model->updateappointmentFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data updated successfully'));
+            redirect(base_url(). 'admin/appointment_list', 'refresh');
+        }
+    
+    
+        if($param1 == 'delete'){
+            $this->appointment_list_model->deleteappointmentFunction($param2);
+            $this->session->set_flashdata('flash_message', get_phrase('Data deleted successfully'));
+            redirect(base_url(). 'admin/appointment_list', 'refresh');
+        }
+    
+        $page_data['page_name']     = 'appointment_list';
+        $page_data['page_title']    = get_phrase('manage_appointment_list');
+        $clinic_id = $this->session->userdata('clinic_id');
+        $page_data['select_appointment_list']  = $this->db->get_where('calendar',array(''))->result_array();
+        $this->load->view('backend/index', $page_data);
+    
     }
 
+    
+function schedule_list(){
+
+    $data_calendar = $this->schedule_list_model->get_list($this->table);
+            $calendar = array();
+            foreach ($data_calendar as $key => $val) 
+            {
+                $calendar[] = array(
+                                'id'    => intval($val->id), 
+                                'title' => $val->title,
+    
+                                 'description' => trim($val->description), 
+                                'start' => date_format( date_create($val->start_date) ,"Y-m-d H:i"),
+                              'end'   => date_format( date_create($val->end_date) ,"Y-m-d H:i"),
+                              'start_time'   => date_format( date_create($val->start_time) ,"Y-m-d H:i"),
+                              'end_time'   => date_format( date_create($val->end_time) ,"Y-m-d H:i"),
+    
+                                'color' => $val->color,
+                                );
+            }
+    
+            $page_data = array();
+        
+        $page_data['page_name']     = 'schedule_list';
+        $page_data['page_title']    = get_phrase('manage_schedule_list');
+        $page_data['get_data']           = json_encode($calendar);
+        $this->load->view('backend/index', $page_data);
+    
+    }
+     function save()
+        {
+            $response = array();
+            $this->form_validation->set_rules('title', 'Title cant be empty ', 'required');
+            if ($this->form_validation->run() == TRUE)
+            {
+                $param = $this->input->post();
+                $calendar_id = $param['calendar_id'];
+                unset($param['calendar_id']);
+    
+                if($calendar_id == 0)
+                {
+                    $param['create_at']     = date('d-m-Y H:i');
+                     $title = $this->input->post('title');
+            $description = $this->input->post('description');
+            $start_date = $this->input->post('start_date');
+            $end_date = $this->input->post('end_date');
+            $start_time = $this->input->post('start_time');
+            $end_time = $this->input->post('end_time');
+            $color = $this->input->post('color');
+            $status = $this->input->post('status');
+            $patient_id = $this->input->post('patient_id');
+            $patient_name = $this->input->post('patient_name');
+            $doctor_id = $this->input->post('doctor_id');
+            $doctor_name = $this->input->post('doctor_name');
+    
+            
+    
+    
+            $param = array(
+                'title' => $title,
+                'description' => $description,
+                'start_date' => $start_date.' '.$start_time,
+                'end_date' => $start_date.' '.$end_time,
+                'start_time' => $start_time,
+                'end_time' => $end_time,
+                'color' => $color,
+                'status' => $status,
+                'patient_id' => $patient_id,
+                'patient_name' => $patient_name,
+                'doctor_id' => $doctor_id,
+                'doctor_name' => $doctor_name,
+                
+    
+            );
+                    $param['create_at']     = date('Y-m-d H:i:s');
+                    $insert = $this->schedule_list_model->insert($this->table, $param);
+    
+                    if ($insert > 0) 
+                    {
+                        $response['status'] = TRUE;
+                        $response['notif']  = 'Success add calendar';
+                        $response['id']     = $insert;
+                    }
+                    else
+                    {
+                        $response['status'] = FALSE;
+                        $response['notif']  = 'Server wrong, please save again';
+                    }
+                }
+                else
+                { 
+                $param['create_at']     = date('d-m-Y H:i');
+                     $title = $this->input->post('title');
+            $description = $this->input->post('description');
+            $start_date = $this->input->post('start_date');
+            $end_date = $this->input->post('end_date');
+            $start_time = $this->input->post('start_time');
+            $end_time = $this->input->post('end_time');
+            /*$color = $this->input->post('color');
+            $status = $this->input->post('status');*/
+    
+             
+    
+    
+            $param = array(
+                'title' => $title,
+                'description' => $description,
+                'start_date' => $start_date.' '.$start_time,
+                'end_date' => $start_date.' '.$end_time,
+                'start_time' => $start_time,
+                'end_time' => $end_time,
+                /*'color' => $color,
+                'status' => $status,*/
+                
+    
+            );  
+                    $where      = [ 'id'  => $calendar_id];
+                    $param['modified_at']       = date('Y-m-d H:i:s');
+                    $update = $this->schedule_list_model->update($this->table, $param, $where);
+    
+                    if ($update > 0) 
+                    {
+                        $response['status'] = TRUE;
+                        $response['notif']  = 'Success add calendar';
+                        $response['id']     = $calendar_id;
+                    }
+                    else
+                    {
+                        $response['status'] = FALSE;
+                        $response['notif']  = 'Server wrong, please save again';
+                    }
+    
+                }
+            }
+            else
+            {
+                $response['status'] = FALSE;
+                $response['notif']  = validation_errors();
+            }
+    
+            echo json_encode($response);
+        }
+    
+     function delete()
+        {
+            $response       = array();
+            $calendar_id    = $this->input->post('id');
+            if(!empty($calendar_id))
+            {
+                $where = ['id' => $calendar_id];
+                $delete = $this->schedule_list_model->delete($this->table, $where);
+    
+                if ($delete > 0) 
+                {
+                    $response['status'] = TRUE;
+                    $response['notif']  = 'Success delete calendar';
+                }
+                else
+                {
+                    $response['status'] = FALSE;
+                    $response['notif']  = 'Server wrong, please save again';
+                }
+            }
+            else
+            {
+                $response['status'] = FALSE;
+                $response['notif']  = 'Data not found';
+            }
+    
+            echo json_encode($response);
+        }
+
+
+
 }
+
+
+
+
+

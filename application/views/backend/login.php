@@ -135,10 +135,9 @@ $system_title = $this->db->get_where('settings', array('type' => 'system_title')
                         </h3>
                         <div class="text-center">
                             <button class="btn btn-infoo btn-rounded text-center" type="submit"
-                                style="width:40%; color:white" >Sign In
+                                style="width:40%; color:white" ><a href="<?php echo base_url() ?>Newuser/dashboard">Sign In</a>
                                 <!-- <?php echo get_phrase('Register');?> -->
                             </button>
-                            <!-- <a href="<?php echo base_url() ?>newuser.php">dsdsd</a> -->
                         </div>
 
                     </div>

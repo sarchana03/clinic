@@ -429,30 +429,30 @@
              </div>
          </div>
      </div> -->
-     <div class="col-sm-12">
+     <div class="col-sm-3">
          <div class="panel panel-info">
 
              <div class="panel-body table-responsive">
-                 <?php echo get_phrase('Recently Received Appointments');?>
-                 <hr class="sep-2">
-                 <table id="example23" class="display nowrap" cellspacing="0" width="100%">
+                 <!-- <?php echo get_phrase('Recently Received Appointments');?> -->
+                 <!-- <hr class="sep-2"> -->
+                 <table id="#" class="display nowrap" cellspacing="0" width="100%">
                      <thead>
                          <tr>
                              <!-- <th>Image</th> -->
-                             <th>Name</th>
+                             <!-- <th>Name</th>
                              <th>Email</th>
-                             <th>Phone</th>
+                             <th>Phone</th> -->
                          </tr>
                      </thead>
                      <tbody>
-                         <tr>
+                         <tr class="row">
                              <?php $get_doctor_from_model = $this->crud_model->list_all_newuser_and_order_with_newuser_id();
                                     foreach ($get_doctor_from_model as $key => $doctor):?>
                              <!-- <td><img src="<?php echo $doctor['face_file'];?>" class="img-circle" width="40px"
                                      height="40px"></td> -->
-                             <td><?php echo $doctor['name'];?></td>
-                             <td><?php echo $doctor['email'];?></td>
-                             <td><?php echo $doctor['phone'];?></td>
+                             <td>Name : <?php echo $doctor['name'];?></td>
+                             <td>Email : <?php echo $doctor['email'];?></td>
+                             <td>Phone : <?php echo $doctor['phone'];?></td>
                          </tr>
                          <?php endforeach;?>
 
@@ -461,5 +461,39 @@
              </div>
          </div>
      </div>
+
+     <div class="col-sm-3">
+         <div class="panel panel-info">
+
+             <div class="panel-body table-responsive">
+                 <!-- <?php echo get_phrase('Recently Received Appointments');?> -->
+                 <!-- <hr class="sep-2"> -->
+                 <table id="#" class="display nowrap" cellspacing="0" width="100%">
+                     <thead>
+                         <tr>
+                             <!-- <th>Image</th> -->
+                             <!-- <th>Name</th>
+                             <th>Email</th>
+                             <th>Phone</th> -->
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr class="row">
+                             <?php $get_doctor_from_model = $this->crud_model->list_all_newuser_and_order_with_newuser_idd();
+                                    foreach ($get_doctor_from_model as $key => $doctor):?>
+                             <!-- <td><img src="<?php echo $doctor['face_file'];?>" class="img-circle" width="40px"
+                                     height="40px"></td> -->
+                             <td>Name : <?php echo $doctor['name'];?></td>
+                             <td>Email : <?php echo $doctor['email'];?></td>
+                             <td>Phone : <?php echo $doctor['phone'];?></td>
+                         </tr>
+                         <?php endforeach;?>
+
+                     </tbody>
+                 </table>
+             </div>
+         </div>
+     </div>
+
  </div>
  <!-- /.row -->

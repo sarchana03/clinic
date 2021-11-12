@@ -130,8 +130,8 @@ $system_title = $this->db->get_where('settings', array('type' => 'system_title')
 
                                 <button
                                     class="btn btn-infoo btn-rounded btn-sm btn-block text-uppercase waves-effect waves-light"
-                                    type="submit" style="width:40%; color:white">
-                                    <?php echo get_phrase('Submit');?>
+                                    type="submit" style="width:40%; color:white"><a href="<?php echo base_url() ?>">Submit</a>
+                                    <!-- <?php echo get_phrase('Submit');?> -->
                                 </button>
                                 <div align="center"><img id="install_progress"
                                         src="<?php echo base_url() ?>assets/images/preloader.gif"

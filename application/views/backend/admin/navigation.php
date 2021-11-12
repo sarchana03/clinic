@@ -130,6 +130,49 @@
     </li>
     <?php endif;?> -->
      <!---  Permission for Admin Manage Academics ends here ------>
+
+
+     <!---  Permission for Admin Manage Academics starts here ------>
+     <?php $check_admin_permission = $this->db->get_where('admin_role', array('admin_id' => $this->session->userdata('login_user_id')))->row()->manage_calendar;?>
+     <?php if($check_admin_permission == '1'):?>   
+        <li> <a href="javascript:void(0);" class=""><i class="fa fa-calendar" data-icon="7"></i> <span class="hide-menu"> <?php echo get_phrase('Appointment Schedule');?> <span class="fa arrow"></span></span></a>
+                        <ul class=" nav nav-second-level<?php
+            if (    $page_name == 'schedule_list'||
+                    $page_name == 'appointment_list'||
+                    
+                    
+                    $page_name == 'teacher_list') echo 'opened active';
+            ?> ">
+                            
+        <li class="<?php if ($page_name == 'schedule_list') echo 'active';?>"> 
+
+            <a href="<?php echo base_url();?>admin/schedule_list">
+                <i class="fa fa-angle-double-right p-r-10"></i>
+                <span class="hide-menu"><?php echo get_phrase('Schedule List');?></span>
+
+            </a> 
+        </li>
+        
+
+       <li class="<?php if ($page_name == 'appointment_list') echo 'active'; ?> ">
+                <a href="<?php echo base_url(); ?>admin/appointment_list">
+                <i class="fa fa-angle-double-right p-r-10"></i>
+                      <span class="hide-menu"><?php echo get_phrase('Appointment List'); ?></span>
+                </a>
+        </li>
+
+        
+
+        
+
+         
+
+         
+                           
+        </ul>
+    </li>
+    <?php endif;?> <!---  Permission for Admin Manage Academics ends here ------>
+
                    
 
 

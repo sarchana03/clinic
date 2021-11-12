@@ -88,6 +88,39 @@
                  </ul>
         </li>
 
+        <li class="attendance"> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-calendar"></i> <span class="hide-menu"><?php echo get_phrase('manage_calendar');?><span class="fa arrow"></span></span></a>
+        
+        <ul class=" nav nav-second-level<?php
+            if ($page_name == 'manage_calendar' || $page_name == 'my_calendar' ||
+                $page_name == 'appointment')
+            echo 'opened active';
+            ?>">
+                    
+
+                <li class="<?php if ($page_name == 'my_calendar') echo 'active'; ?> ">
+                    <a href="<?php echo base_url(); ?>doctor/my_calendar ">
+                    <i class="fa fa-angle-double-right p-r-10"></i>
+                        <span class="hide-menu"><?php echo get_phrase('my_calendar'); ?></span>
+                    </a>
+                </li>
+
+
+                <li class="<?php if ($page_name == 'appointment') echo 'active'; ?> ">
+                    <a href="<?php echo base_url(); ?>doctor/appointment">
+                    <i class="fa fa-angle-double-right p-r-10"></i>
+                        <span class="hide-menu"><?php echo get_phrase('Appointment'); ?></span>
+                    </a>
+                </li>
+        </ul>
+    </li>
+
+
+
+
+
+
+
+
     <!-- <li class="attendance"> <a href="#" class="waves-effect"><i data-icon="&#xe006;" class="fa fa-hospital-o p-r-10"></i> <span class="hide-menu"><?php echo get_phrase('manage_attendance');?><span class="fa arrow"></span></span></a>
         
         <ul class=" nav nav-second-level<?php
